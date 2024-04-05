@@ -12,9 +12,9 @@ import javax.swing.Timer;
 public class CompanyLogo extends JPanel implements ActionListener{
     
     //make delay a constant
-     private Timer t = new Timer(100, this);
+     private Timer t = new Timer(200, this);
      //use company logo and use constant for file path
-     private ImageIcon i = new ImageIcon("g\\Assets\\gameicon.png");
+     private ImageIcon i = new ImageIcon("g/Assets/QIBE Logo.png");
      private float alphaValue = 0f;
      private boolean operation = true;
      
