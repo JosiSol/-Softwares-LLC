@@ -17,6 +17,7 @@ public class CompanyLogo extends JPanel implements ActionListener{
      private ImageIcon i = new ImageIcon("g\\Assets\\gameicon.png");
      private float alphaValue = 0f;
      private boolean operation = true;
+     
 
     @Override
     public void paint(Graphics g) {
@@ -41,6 +42,7 @@ public class CompanyLogo extends JPanel implements ActionListener{
         alphaValue = alphaValue - 0.2f;
         if(alphaValue <= 0)
         {
+            alphaValue = 0;
             t.stop();
         }
        }
@@ -48,9 +50,15 @@ public class CompanyLogo extends JPanel implements ActionListener{
         repaint();
     }
 
+    public boolean getDisplayingLogo()
+    {
+        return t.isRunning();
+        
+    }
 
     public CompanyLogo()
     {
+        this.setOpaque(false);
         t.start();
     }
 }

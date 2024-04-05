@@ -3,11 +3,12 @@ package Memory;
 
 //import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.lang.String;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class Gamepanel extends JFrame{
+public class GamePanel extends JFrame{
     private final String GAME_NAME = "Memory Game";
     private final int WIDTH = 1000;
     private final int HEIGHT = 600;
@@ -22,7 +23,6 @@ public class Gamepanel extends JFrame{
         //dont set it to any color this is just for testing
         this.getContentPane().setBackground(Color.WHITE);
 
-        //instead of this.setIconImage(new ImageIcon(ICON_PIC).getImage());
         this.icon = new ImageIcon(ICON_PIC);
         this.setIconImage(icon.getImage());
 
@@ -32,5 +32,11 @@ public class Gamepanel extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public Gamepanel(){}
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        this.getContentPane().setBackground(Color.WHITE);
+    }
+
+    public GamePanel(){}
 }
