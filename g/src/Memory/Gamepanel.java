@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 
 public class GamePanel extends JFrame{
     private final String GAME_NAME = "Memory Game";
-    private final int WIDTH = 1000;
-    private final int HEIGHT = 600;
-    private final String ICON_PIC = "g\\Assets\\gameicon.png";
+    private final int WIDTH = 800;
+    private final int HEIGHT = 800;
+    private final String ICON_PIC = "g/Assets/Icon G.png";
     private final ImageIcon icon;
     
     {
