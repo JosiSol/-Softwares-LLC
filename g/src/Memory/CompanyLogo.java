@@ -31,7 +31,7 @@ public class CompanyLogo extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        //overcomplicated logic fix later
+        //over complicated logic fix later
        alphaValue = alphaValue + 0.1f;
        if( alphaValue > 1f)
        {

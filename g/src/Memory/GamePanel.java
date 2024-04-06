@@ -13,17 +13,17 @@ public class GamePanel extends JFrame{
     private final int WIDTH = 800;
     private final int HEIGHT = 800;
     private final String ICON_PIC = "g/Assets/Icon G.png";
-    private final ImageIcon icon;
+    private final ImageIcon icon = new ImageIcon(ICON_PIC);
     
-    {
-        //rearrange order maybe puy in constructor
+    public void createGamePanel(){
+    	
+    	//rearrange order maybe put in constructor
         this.setTitle(GAME_NAME);
         this.setSize(WIDTH, HEIGHT);
 
-        //dont set it to any color this is just for testing
+        //don't set it to any color this is just for testing
         this.getContentPane().setBackground(Color.WHITE);
 
-        this.icon = new ImageIcon(ICON_PIC);
         this.setIconImage(icon.getImage());
 
         //this.pack(); resizes based on components might use later
@@ -31,7 +31,7 @@ public class GamePanel extends JFrame{
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
+  
     @Override
     public void paint(Graphics g) {
         super.paint(g);
