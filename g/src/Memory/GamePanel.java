@@ -18,7 +18,7 @@ public class GamePanel extends JFrame{
         //rearrange order maybe put in constructor
         this.setTitle(GAME_NAME);
         this.setSize(WIDTH, HEIGHT);
-        this.getContentPane().setBackground(Color.WHITE);//color the frame white
+        this.getContentPane().setBackground(Color.BLACK);//color the frame white
         this.setIconImage(GAME_ICON.getImage());//get the image out and put it at the top-left icon
         this.setLocationByPlatform(true);//sets the location of the frame based on the platform used 
         this.setVisible(true);//if not set to true the frame will exist but wont be visible

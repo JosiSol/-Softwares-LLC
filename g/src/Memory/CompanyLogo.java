@@ -13,15 +13,15 @@ import javax.swing.Timer;
 //resizing will make it obvious that the logo isnt centered so fix that too
 public class CompanyLogo extends JLabel implements ActionListener{
     // rearrange
-     private final int delay = 200;//milliseconds before the event happens again
+     private final int delay = 100;//milliseconds before the event happens again
      private Timer logoTimer = new Timer(delay, this);////timer that handles the firing of the event every delay milliseconds
      private final String LOGO_PIC = "g/Assets/QIBE Logo.png";//path of the company logo pic(currently a place holder)
      private final ImageIcon COMPANY_LOGO = new ImageIcon(LOGO_PIC);//field that holds the image
      //initialize both somewhere else
      private float alphaValue = 0f;//Value that decides how visible/transparent the image is
      private boolean operation = true;//flag that decides wether to increase or decrease alphaValue
-     private final int X_POS = 400;// (width of frame - width of image)
-     private final int Y_POS = 200;// (height of frame - height of image)
+     private final int X_POS = 200;// (width of frame - width of image)
+     private final int Y_POS = 0;// (height of frame - height of image)
      
     //done
     @Override
