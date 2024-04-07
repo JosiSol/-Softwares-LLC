@@ -2,6 +2,9 @@ package Memory;
 
 //main class that will handle the interaction between the game objects/components
 public class Game {
+	
+	GamePanel gamePanel = new GamePanel();
+	
     public static void main(String[] args)
     {   
         GameMenu gameMenu = new GameMenu();
