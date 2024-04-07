@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 //class of frame on which we will add/remove the components of the game
 public class GamePanel extends JFrame{
     private final String GAME_NAME = "Memory Game";//Title/Name of frame,look at top-left
-    private final int WIDTH = 800;
-    private final int HEIGHT = 800;
+    private final int WIDTH = 1000;
+    private final int HEIGHT = 600;
     private final String ICON_PIC = "g/Assets/Icon G.png";//path of the icon
     private final ImageIcon GAME_ICON = new ImageIcon(ICON_PIC);//field that holds the image
     
