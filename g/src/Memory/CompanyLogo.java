@@ -71,6 +71,7 @@ public class CompanyLogo extends JLabel implements ActionListener{
         //that means the label has a background that covers the white background of the frame. we can fix 
         //that by setting setOpaque to false, making the label's background invisible
         this.setOpaque(false);
+        this.setSize(100, 100);
         logoTimer.start();//starts the timer
     }
 }
