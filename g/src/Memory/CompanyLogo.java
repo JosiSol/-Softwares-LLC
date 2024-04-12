@@ -1,6 +1,7 @@
 package Memory;
 
 import java.awt.AlphaComposite;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -70,6 +71,7 @@ public class CompanyLogo extends JLabel implements ActionListener{
         //here is the thing, while the label only has a pic on it the actual label covers the whole frame
         //that means the label has a background that covers the white background of the frame. we can fix 
         //that by setting setOpaque to false, making the label's background invisible
+        this.setPreferredSize(new Dimension(1000,600));
         this.setOpaque(false);
         logoTimer.start();//starts the timer
     }
