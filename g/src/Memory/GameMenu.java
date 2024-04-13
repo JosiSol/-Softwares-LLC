@@ -20,6 +20,38 @@ public class GameMenu extends JPanel implements MouseListener{
     private JLabel exit = new JLabel("Exit");
     private JLabel aboutUs =  new JLabel("About us");
     public static volatile boolean showAboutUsPage;
+    /*
+     * using a static boolean for a while loop condition in 
+     * java seems to not work for me unless i add a sleep thread 
+     * inside the loop body (the condition is set to false
+     *  from a different class once a cetain button is clicked)?
+     * 
+     * Using a static boolean variable 
+     * for a while loop condition with modification from another class 
+     * can lead to unexpected behavior in Java due to a phenomenon called 
+     * "thread visibility."
+     * Here's why your code might not work as expected:
+     * Static Variables and Threads: When you declare a variable
+     *  as static, it's shared across all threads in your program.
+     *  However, changes made to a static variable by one thread 
+     * might not be immediately visible to other threads due to caching
+     *  mechanisms within the JVM.
+     * Visibility Issue: In your scenario, the thread running
+     *  the while loop might have a cached value for the static
+     *  boolean variable. Even if another thread 
+     * (triggered by a button click) sets it to false,
+     *  the while loop thread might not see this update immediately, 
+     * causing the loop to continue.
+     * 
+     * Solutions to Fix the Issue:
+     * 
+     * Using volatile keyword:
+     * 
+     * Declare the boolean variable as volatile within the class
+     *  where it's used.
+     * The volatile keyword ensures that any changes made to the variable
+     *  are immediately visible to all threads.
+     */
     
       
     {
