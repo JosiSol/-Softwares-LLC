@@ -1,34 +1,49 @@
 package Memory;
 
+//main class that will handle the interaction between the game objects/components
 public class Game {
 	
-	GamePanel gamePanel = new GamePanel();
-	
     public static void main(String[] args)
-    {
-    	Game newGame = new Game();
-        //declare logo before panel to make sure the panel will be displayed immediately when the logo is displayed
-        //i.e giving the logo time to load
-        //if we don't do that it wont be displayed half of the time
-        //other way of fixing this is by refreshing the gamepanel automatically
-    	
-        /*writing it in this format works too
-        Gamepanel gamepanel = new Gamepanel());
-        CompanyLogo c = new CompanyLogo();
-        gamepanel.setVisible(true);
-        gamepanel.getContentPane().add(c);
-         */
-        
+    {   
+        AboutUs aboutUs = new AboutUs();
+        GameMenu gameMenu = new GameMenu();
         CompanyLogo companyLogo = new CompanyLogo();
-        
-        newGame.gamePanel.createGamePanel();
-        newGame.gamePanel.getContentPane().add(companyLogo);
+        GamePanel gamePanel = new GamePanel();
+        //make the user unable to resize until logo finishes loading cuz otherwise it wont be at the center of the screen
+        gamePanel.setResizable(false);
+        gamePanel.getContentPane().add(companyLogo);
+        gamePanel.pack();
         while(companyLogo.getDisplayingLogo()){}//just wasting time till the logo is done displaying
+        gamePanel.getContentPane().remove(companyLogo);
+        gamePanel.setResizable(true);
         
-        newGame.gamePanel.getContentPane().remove(companyLogo);
-        
-        //displays the menu screen
-        new Menu(newGame.gamePanel);
+        while(true){
+
+            gamePanel.getContentPane().add(gameMenu);// button wont be visibile after adding unless we refresh the screen or set the bounds   
+            gamePanel.repaint();
+            gamePanel.pack();
+            while(!GameMenu.showAboutUsPage){}//waste timer till user makes a choice
+            gamePanel.getContentPane().remove(gameMenu);
+            System.out.println("rightt");
+            if(GameMenu.showAboutUsPage)
+            {
+                // add panel that holds thingys
+                gamePanel.getContentPane().add(aboutUs);
+                gamePanel.repaint();
+                gamePanel.pack();
+                System.out.println("right");
+                while(GameMenu.showAboutUsPage){}/*back button wasn't clicked*/
+                gamePanel.remove(aboutUs);
+                
+            }
+            else //if game start 
+            {
+                System.out.println("wrong");
+                //start game
+                //while exit wasnt clicked
+            }
+
+    }
 
     }
 }
