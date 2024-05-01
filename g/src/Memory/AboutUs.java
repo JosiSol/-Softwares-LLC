@@ -21,7 +21,7 @@ public class AboutUs extends JPanel implements MouseListener{
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e){
         GameMenu.showAboutUsPage = false;
         System.out.println("Back to square one");
     }

@@ -2,7 +2,7 @@ package Memory;
 
 //main class that will handle the interaction between the game objects/components
 public class Game {
-	
+	/*there is a bug where the about us button isnt back to normal size when we click it then go back to the menu*/
     public static void main(String[] args)
     {   
         AboutUs aboutUs = new AboutUs();
@@ -22,7 +22,7 @@ public class Game {
             gamePanel.getContentPane().add(gameMenu);// button wont be visibile after adding unless we refresh the screen or set the bounds   
             gamePanel.repaint();
             gamePanel.pack();
-            while(!GameMenu.showAboutUsPage){}//waste timer till user makes a choice
+            while(!GameMenu.showAboutUsPage && !GameMenu.runGame){}//waste timer till user makes a choice
             gamePanel.getContentPane().remove(gameMenu);
             System.out.println("rightt");
             if(GameMenu.showAboutUsPage)
@@ -36,11 +36,14 @@ public class Game {
                 gamePanel.remove(aboutUs);
                 
             }
-            else //if game start 
+            else if(GameMenu.runGame) 
             {
-                System.out.println("wrong");
-                //start game
-                //while exit wasnt clicked
+                // add panel that holds thingys
+                gamePanel.getContentPane().add(aboutUs);
+                gamePanel.repaint();
+                gamePanel.pack();
+                while (GameMenu.runGame){}/*back button wasn't clicked and game didnt end*/
+                gamePanel.remove(aboutUs);
             }
 
     }
