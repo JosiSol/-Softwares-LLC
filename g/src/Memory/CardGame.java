@@ -4,26 +4,32 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AboutUs extends JPanel implements MouseListener{
+
+
+
+public class CardGame extends JPanel implements MouseListener{
     JLabel tri;
+    Card card = new Card(100,100,1);
+
     {
+        this.setLayout(null);
         this.setPreferredSize(new Dimension(1000,600));
         this.setVisible(true);
-        this.setBackground(Color.red);
+        this.setBackground(Color.white);
+
         tri = new JLabel("triangle");
+        tri.setBounds(10,0,50,50);
         tri.addMouseListener(this);
         this.add(tri);
-        this.add(new JLabel("Skrpap skrpap"));
+        this.add(card);
     }
 
     @Override
     public void mouseClicked(MouseEvent e){
-        GameMenu.showAboutUsPage = false;
-        System.out.println("Back to square one");
+        GameMenu.runGame = false;
     }
 
     @Override
@@ -38,5 +44,6 @@ public class AboutUs extends JPanel implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {}
 
-    public AboutUs(){}
+    public CardGame(){}
+
 }

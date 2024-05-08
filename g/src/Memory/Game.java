@@ -5,6 +5,7 @@ public class Game {
 	/*there is a bug where the about us button isnt back to normal size when we click it then go back to the menu*/
     public static void main(String[] args)
     {   
+        CardGame CardGame = new CardGame();
         AboutUs aboutUs = new AboutUs();
         GameMenu gameMenu = new GameMenu();
         CompanyLogo companyLogo = new CompanyLogo();
@@ -15,7 +16,8 @@ public class Game {
         gamePanel.pack();
         while(companyLogo.getDisplayingLogo()){}//just wasting time till the logo is done displaying
         gamePanel.getContentPane().remove(companyLogo);
-        gamePanel.setResizable(true);
+        //nvm just dont let bro change the screen size at all
+        //gamePanel.setResizable(true);
         
         while(true){
 
@@ -39,11 +41,11 @@ public class Game {
             else if(GameMenu.runGame) 
             {
                 // add panel that holds thingys
-                gamePanel.getContentPane().add(aboutUs);
+                gamePanel.getContentPane().add(CardGame);
                 gamePanel.repaint();
                 gamePanel.pack();
                 while (GameMenu.runGame){}/*back button wasn't clicked and game didnt end*/
-                gamePanel.remove(aboutUs);
+                gamePanel.remove(CardGame);
             }
 
     }
