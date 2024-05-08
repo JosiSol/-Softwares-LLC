@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 
 
 
-
+//Add a function that resets all the cards and scores when the triangle is clicked
 public class CardGame extends JPanel implements MouseListener{
-    JLabel tri;
+    private JLabel tri;
     Card card = new Card(100,100,1);
 
     {
