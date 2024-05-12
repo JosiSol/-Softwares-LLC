@@ -1,5 +1,7 @@
 package Memory;
 
+import Memory.Player.Choice;
+import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -11,7 +13,8 @@ import javax.swing.Timer;
 
 public class Card extends JLabel implements MouseListener,ActionListener{
 
-    private int pic;//used to choose the sprite
+    //make private and make a setter method for it
+    public int pic;//used to choose the sprite
     private Timer t = new Timer(400,this);
     private boolean closed = true;
 
