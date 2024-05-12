@@ -1,7 +1,5 @@
 package Memory;
 
-import Memory.Player.Choice;
-
 public final class Player {
     public static enum Choice{FIRST, SECOND};
 

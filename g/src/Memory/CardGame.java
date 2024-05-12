@@ -16,7 +16,7 @@ import javax.swing.Timer;
 //Add a function that resets all the cards and scores when the triangle is clicked
 public class CardGame extends JPanel implements MouseListener,ActionListener{
     private JLabel tri;
-    private Integer[] possibleNum = {1,1,2,2,3,3,4,4,5,5,6,6};
+    private  final Integer[] possibleNum = {1,1,2,2,3,3,4,4,5,5,6,6};
     private Random rnd = new Random();
     private Timer t = new Timer(400,this);
     
@@ -98,7 +98,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         if(e.getSource() == tri){
             GameMenu.runGame = false;
         }
-        else{
+        else if(Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])){
             if(Player.choiceNum == Player.Choice.FIRST){
                 Player.choiceNum = Player.Choice.SECOND;
                 Player.choices[0] = (Card) e.getSource();

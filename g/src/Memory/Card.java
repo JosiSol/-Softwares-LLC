@@ -1,7 +1,5 @@
 package Memory;
 
-import Memory.Player.Choice;
-import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -16,7 +14,8 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     //make private and make a setter method for it
     public int pic;//used to choose the sprite
     private Timer t = new Timer(400,this);
-    private boolean closed = true;
+    //make private and add setter method
+    public boolean closed = true;
 
     {
         t.setRepeats(false);
@@ -27,8 +26,10 @@ public class Card extends JLabel implements MouseListener,ActionListener{
 
     @Override
     public void mouseClicked(MouseEvent e){
-        this.setIcon(new ImageIcon("g/Assets/open"+ pic +".gif"));
-        t.start();
+        if(closed){    
+            this.setIcon(new ImageIcon("g/Assets/open"+ pic +".gif"));
+            t.start();
+        }
     }
 
     @Override
