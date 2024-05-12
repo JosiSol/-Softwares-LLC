@@ -5,7 +5,7 @@ public class Game {
 	/*there is a bug where the about us button isnt back to normal size when we click it then go back to the menu*/
     public static void main(String[] args)
     {   
-        CardGame CardGame = new CardGame();
+        CardGame cardGame = new CardGame();
         AboutUs aboutUs = new AboutUs();
         GameMenu gameMenu = new GameMenu();
         CompanyLogo companyLogo = new CompanyLogo();
@@ -26,7 +26,6 @@ public class Game {
             gamePanel.pack();
             while(!GameMenu.showAboutUsPage && !GameMenu.runGame){}//waste timer till user makes a choice
             gamePanel.getContentPane().remove(gameMenu);
-            System.out.println("rightt");
             if(GameMenu.showAboutUsPage)
             {
                 // add panel that holds thingys
@@ -41,11 +40,12 @@ public class Game {
             else if(GameMenu.runGame) 
             {
                 // add panel that holds thingys
-                gamePanel.getContentPane().add(CardGame);
+                gamePanel.getContentPane().add(cardGame);
                 gamePanel.repaint();
                 gamePanel.pack();
                 while (GameMenu.runGame){}/*back button wasn't clicked and game didnt end*/
-                gamePanel.remove(CardGame);
+                gamePanel.remove(cardGame);
+                cardGame = new CardGame();
             }
 
     }

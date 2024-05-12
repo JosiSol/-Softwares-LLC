@@ -34,6 +34,9 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     Card _12;
     
     {
+        Player.choiceNum = Player.Choice.FIRST;
+        Player.Turn = Player.Choice.FIRST;
+
         //this.setLayout(null);
         this.setPreferredSize(new Dimension(1000,600));
         this.setVisible(true);
