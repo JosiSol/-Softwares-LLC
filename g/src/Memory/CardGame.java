@@ -1,7 +1,6 @@
 package Memory;
 
 import java.awt.Color;
-import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -90,7 +90,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         if(e.getSource() == backButton){
             GameMenu.runGame = false;
         }
-        else if(Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])){
+        else if((Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])) && (!(((Card)e.getSource()).getTaken()))){
             if(Player.choiceNum == Player.Choice.FIRST){
                 Player.choiceNum = Player.Choice.SECOND;
                 Player.choices[0] = (Card) e.getSource();
@@ -111,6 +111,8 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
                 }
                 else{
                     System.out.println("player " + Player.Turn + "up by a point");
+                    Player.choices[0].taken();
+                    Player.choices[1].taken();
                 }
 
                 

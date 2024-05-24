@@ -14,6 +14,7 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     //make private and make a setter method for it
     public int pic;//used to choose the sprite
     private Timer t = new Timer(400,this);
+    private volatile boolean taken = false;
     //make private and add setter method
     public boolean closed = true;
 
@@ -67,6 +68,14 @@ public class Card extends JLabel implements MouseListener,ActionListener{
         }
 
         closed = !closed;
+    }
+
+    public boolean getTaken(){
+        return this.taken;
+    }
+
+    public void taken(){
+        this.taken = true;
     }
 
 }
