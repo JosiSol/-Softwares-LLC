@@ -30,14 +30,14 @@ public class GameMenu extends JPanel implements MouseListener{
         
         background.setBounds(0, 0, 1200, 700);
 
-        startGame.setBounds(40, 120, 200, 30);
+        startGame.setBounds(40, 120, 100, 30);
         startGame.setForeground(new Color(224, 224, 224));
 
         aboutUs.setBounds(40, 188, 200, 30);
         aboutUs.setForeground(new Color(224, 224, 224));
 
         exit.setBounds(40, 258, 200, 30);
-        exit.setForeground(new Color (189, 189, 189));
+        exit.setForeground(new Color (200, 200, 200));
 
         startGame.setFont(startGame.getFont().deriveFont(25.0f));
         aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
@@ -77,43 +77,60 @@ public class GameMenu extends JPanel implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getSource() == startGame)
-        startGame.setFont(startGame.getFont().deriveFont(23.0f));
+            startGame.setFont(startGame.getFont().deriveFont(22.0f));
         if(e.getSource() == exit)
-        exit.setFont(exit.getFont().deriveFont(23.0f));
+            exit.setFont(exit.getFont().deriveFont(22.0f));
         if(e.getSource() == aboutUs)
-        aboutUs.setFont(aboutUs.getFont().deriveFont(23.0f));
+            aboutUs.setFont(aboutUs.getFont().deriveFont(22.0f));
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(e.getSource() == startGame)
-        startGame.setFont(startGame.getFont().deriveFont(30.0f));
-        if(e.getSource() == exit)
-        exit.setFont(exit.getFont().deriveFont(30.0f));
-        if(e.getSource() == aboutUs)
-        aboutUs.setFont(aboutUs.getFont().deriveFont(30.0f));
+        if(e.getSource() == startGame){
+            startGame.setFont(startGame.getFont().deriveFont(25.0f));
+            startGame.setForeground(new Color(224, 224, 224));
+        }
+        if(e.getSource() == exit){
+            exit.setFont(exit.getFont().deriveFont(25.0f));
+            exit.setForeground(new Color(224, 224, 224));
+        }
+        if(e.getSource() == aboutUs){
+            aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
+            aboutUs.setForeground(new Color(224, 224, 224));
+        }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if(e.getSource() == startGame)
-            startGame.setFont(startGame.getFont().deriveFont(30.0f));
-        if(e.getSource() == exit)
-            exit.setFont(exit.getFont().deriveFont(30.0f));
-        if(e.getSource() == aboutUs)
-            aboutUs.setFont(aboutUs.getFont().deriveFont(30.0f));
-
+        if(e.getSource() == startGame){
+            //startGame.setFont(startGame.getFont().deriveFont(30.0f));
+            startGame.setForeground(new Color (239, 239, 239));
+        }
+        if(e.getSource() == exit){
+            //exit.setFont(exit.getFont().deriveFont(30.0f));
+            exit.setForeground(new Color (225, 225, 225));
+        }
+        if(e.getSource() == aboutUs){
+            //aboutUs.setFont(aboutUs.getFont().deriveFont(30.0f));
+            aboutUs.setForeground(new Color (239, 239, 239));
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if(e.getSource() == startGame)
-            startGame.setFont(startGame.getFont().deriveFont(25.0f));
-        if(e.getSource() == exit)
-            exit.setFont(exit.getFont().deriveFont(25.0f));
-        if(e.getSource() == aboutUs)
-            aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
+        if(e.getSource() == startGame){
+            //startGame.setFont(startGame.getFont().deriveFont(25.0f));
+            startGame.setForeground(new Color(224, 224, 224));
+        }
+        if(e.getSource() == exit){
+            //exit.setFont(exit.getFont().deriveFont(25.0f));
+            exit.setForeground(new Color (200, 200, 200));
+        }
+        if(e.getSource() == aboutUs){
+            //aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
+            aboutUs.setForeground(new Color(224, 224, 224));
+        }
 
     }
     public GameMenu(){}

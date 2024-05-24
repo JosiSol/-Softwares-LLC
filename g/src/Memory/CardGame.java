@@ -142,10 +142,12 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     @Override
     public void mouseEntered(MouseEvent e) {
        if(e.getSource() == tri){
-            tri.setFont(tri.getFont().deriveFont(30.0f));
+            //tri.setFont(tri.getFont().deriveFont(30.0f));
+            tri.setForeground(new Color(75, 75, 75));
         }
         if(e.getSource() == backButton){
-            tri.setFont(tri.getFont().deriveFont(30.0f));
+            //tri.setFont(tri.getFont().deriveFont(30.0f));
+            tri.setForeground(new Color(75, 75, 75));
         } 
     }
 
@@ -153,9 +155,11 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     public void mouseExited(MouseEvent e) {
         if(e.getSource() == tri){
             tri.setFont(tri.getFont().deriveFont(25.0f));
+            tri.setForeground(new Color(55, 55, 55));
         }
         if(e.getSource() == backButton){
             tri.setFont(tri.getFont().deriveFont(25.0f));
+            tri.setForeground(new Color(55, 55, 55));
         } 
     }
 
