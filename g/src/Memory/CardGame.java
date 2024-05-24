@@ -1,6 +1,7 @@
 package Memory;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,21 +20,16 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     private  final Integer[] possibleNum = {1,1,2,2,3,3,4,4,5,5,6,6};
     private Random rnd = new Random();
     private Timer t = new Timer(400,this);
-    
-    Card _1;
-    Card _2;
-    Card _3;
-    Card _4;
-    Card _5;
-    Card _6;
-    Card _7;
-    Card _8;
-    Card _9;
-    Card _10;
-    Card _11;
-    Card _12;
+    ImageIcon backgroundImg = new ImageIcon("g/Assets/gameBackground.jpg");
+    ImageIcon backButtonImg = new ImageIcon("g/Assets/backButton.png");
+    JLabel background = new JLabel(backgroundImg);
+    JLabel backButton = new JLabel(backButtonImg);
+
+    Card[] cardArr = new Card[12];
     
     {
+        this.setLayout(null);
+
         Player.choiceNum = Player.Choice.FIRST;
         Player.Turn = Player.Choice.FIRST;
 
@@ -43,59 +39,55 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         this.setBackground(Color.white);
         t.setRepeats(false);
 
-        tri = new JLabel("triangle");
-        tri.setBounds(10,0,50,50);
+        backButton.setBounds(30, 18, 25, 25);
+        backButton.addMouseListener(this);
+
+        tri = new JLabel("Back");
+        tri.setBounds(56,14,200,30);
+        tri.setFont(tri.getFont().deriveFont(25.0f));
         tri.addMouseListener(this);
 
+        background.setBounds(250, 0, 1000, 600);
+
         Arrays.sort(possibleNum,(a, b) -> rnd.nextInt() - rnd.nextInt());
+        for(int i = 0; i < 12; i++){
+            cardArr[i] = new Card(450, 20, possibleNum[i]);
+            if(i == 1 || i == 2){
+                cardArr[i] = new Card(450+(i*140), 20, possibleNum[i]);
+            }
+            if(i == 3 || i == 6 || i == 9){
+                cardArr[i] = new Card(450, 20+(i*50), possibleNum[i]);
+            }
+            if(i == 4 || i == 5){
+                cardArr[i] = new Card(450+((i-3)*140), 20+(3*50), possibleNum[i]);
+            }
+            if(i == 7 || i == 8){
+                cardArr[i] = new Card(450+((i-6)*140), 20+(6*50), possibleNum[i]);
+            }
+            if(i == 10 || i == 11){
+                cardArr[i] = new Card(450+((i-9)*140), 20+(9*50), possibleNum[i]);
+            }
+        }
 
-        _1 = new Card(100,100,possibleNum[1]);
-        _2 = new Card(100,100,possibleNum[2]);
-        _3 = new Card(100,100,possibleNum[3]);
-        _4 = new Card(100,100,possibleNum[4]);
-        _5 = new Card(100,100,possibleNum[5]);
-        _6 = new Card(100,100,possibleNum[6]);
-        _7 = new Card(100,100,possibleNum[7]);
-        _8 = new Card(100,100,possibleNum[8]);
-        _9 = new Card(100,100,possibleNum[9]);
-        _10 = new Card(100,100,possibleNum[10]);
-        _11 = new Card(100,100,possibleNum[11]);
-        _12 = new Card(100,100,possibleNum[0]);
+        for(int i = 0; i < 12; i++){
+            cardArr[i].addMouseListener(this);
+        }
 
-        _1.addMouseListener(this);
-        _2.addMouseListener(this);
-        _3.addMouseListener(this);
-        _4.addMouseListener(this);
-        _5.addMouseListener(this);
-        _6.addMouseListener(this);
-        _7.addMouseListener(this);
-        _8.addMouseListener(this);
-        _9.addMouseListener(this);
-        _10.addMouseListener(this);
-        _11.addMouseListener(this);
-        _12.addMouseListener(this);
-
-
+        this.add(backButton);
         this.add(tri);
 
-        this.add(_1);
-        this.add(_2);
-        this.add(_3);
-        this.add(_4);
-        this.add(_5);
-        this.add(_6);
-        this.add(_7);
-        this.add(_8);
-        this.add(_9);
-        this.add(_10);
-        this.add(_11);
-        this.add(_12);
-
+        for(int i = 0; i < 12; i++){
+            this.add(cardArr[i]);
+        }
+        this.add(background);
     }
 
     @Override
     public void mouseClicked(MouseEvent e){
         if(e.getSource() == tri){
+            GameMenu.runGame = false;
+        }
+        if(e.getSource() == backButton){
             GameMenu.runGame = false;
         }
         else if(Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])){
@@ -128,16 +120,44 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        if(e.getSource() == tri){
+            tri.setFont(tri.getFont().deriveFont(23.0f));
+        }
+        if(e.getSource() == backButton){
+            tri.setFont(tri.getFont().deriveFont(23.0f));
+        } 
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        if(e.getSource() == tri){
+            tri.setFont(tri.getFont().deriveFont(25.0f));
+        }
+        if(e.getSource() == backButton){
+            tri.setFont(tri.getFont().deriveFont(25.0f));
+        } 
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+       if(e.getSource() == tri){
+            tri.setFont(tri.getFont().deriveFont(30.0f));
+        }
+        if(e.getSource() == backButton){
+            tri.setFont(tri.getFont().deriveFont(30.0f));
+        } 
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+        if(e.getSource() == tri){
+            tri.setFont(tri.getFont().deriveFont(25.0f));
+        }
+        if(e.getSource() == backButton){
+            tri.setFont(tri.getFont().deriveFont(25.0f));
+        } 
+    }
 
     public CardGame(){}
 

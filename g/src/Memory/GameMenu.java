@@ -77,11 +77,11 @@ public class GameMenu extends JPanel implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getSource() == startGame)
-        startGame.setFont(startGame.getFont().deriveFont(20.0f));
+        startGame.setFont(startGame.getFont().deriveFont(23.0f));
         if(e.getSource() == exit)
-        exit.setFont(exit.getFont().deriveFont(20.0f));
+        exit.setFont(exit.getFont().deriveFont(23.0f));
         if(e.getSource() == aboutUs)
-        aboutUs.setFont(aboutUs.getFont().deriveFont(20.0f));
+        aboutUs.setFont(aboutUs.getFont().deriveFont(23.0f));
 
     }
 

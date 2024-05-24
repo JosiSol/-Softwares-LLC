@@ -50,12 +50,12 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     }
 
     Card(int posX, int posY, int pic){
-        this.setBounds(posX, posY, 500, 500);
+        this.setBounds(posX, posY, 50, 66);
         this.pic = pic;
     }
 
     Card(){
-        this.setBounds(100, 100, 500, 500);
+        this.setBounds(100, 100, 100, 100);
     }
 
     @Override
