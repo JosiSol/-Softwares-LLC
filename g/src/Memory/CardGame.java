@@ -1,6 +1,7 @@
 package Memory;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,15 +34,22 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     JLabel backButton = new JLabel(backButtonImg);
     
     Card[] cardArr = new Card[12];
-    
+
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Image newCur1 = tk.getImage("g/Assets/cursorMain.png");
+    Image turnCur = tk.getImage("g/Assets/curvedArrow.png");
+    Cursor curvedArrow = tk.createCustomCursor(turnCur, getLocation(), TOOL_TIP_TEXT_KEY);
     {
         this.setLayout(null);
+        Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
+        
+        this.setCursor(mainCursor);
 
         Player.choiceNum = Player.Choice.FIRST;
         Player.Turn = Player.Choice.FIRST;
 
         //this.setLayout(null);
-        this.setPreferredSize(new Dimension(1000,600));
+        this.setPreferredSize(new Dimension(1200,600));
         this.setVisible(true);
         this.setBackground(Color.white);
         t.setRepeats(false);
@@ -65,26 +75,27 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
 
         Arrays.sort(possibleNum,(a, b) -> rnd.nextInt() - rnd.nextInt());
         for(int i = 0; i < 12; i++){
-            cardArr[i] = new Card(450, 20, possibleNum[i]);
+            cardArr[i] = new Card(600, 20, possibleNum[i]);
             if(i == 1 || i == 2){
-                cardArr[i] = new Card(450+(i*140), 20, possibleNum[i]);
+                cardArr[i] = new Card(600+(i*140), 20, possibleNum[i]);
             }
             if(i == 3 || i == 6 || i == 9){
-                cardArr[i] = new Card(450, 20+(i*50), possibleNum[i]);
+                cardArr[i] = new Card(600, 20+(i*50), possibleNum[i]);
             }
             if(i == 4 || i == 5){
-                cardArr[i] = new Card(450+((i-3)*140), 20+(3*50), possibleNum[i]);
+                cardArr[i] = new Card(600+((i-3)*140), 20+(3*50), possibleNum[i]);
             }
             if(i == 7 || i == 8){
-                cardArr[i] = new Card(450+((i-6)*140), 20+(6*50), possibleNum[i]);
+                cardArr[i] = new Card(600+((i-6)*140), 20+(6*50), possibleNum[i]);
             }
             if(i == 10 || i == 11){
-                cardArr[i] = new Card(450+((i-9)*140), 20+(9*50), possibleNum[i]);
+                cardArr[i] = new Card(600+((i-9)*140), 20+(9*50), possibleNum[i]);
             }
         }
 
         for(int i = 0; i < 12; i++){
             cardArr[i].addMouseListener(this);
+            cardArr[i].setCursor(curvedArrow);
         }
 
         this.add(backButton);
@@ -163,7 +174,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         if(e.getSource() == backButton){
             //tri.setFont(tri.getFont().deriveFont(30.0f));
             tri.setForeground(new Color(75, 75, 75));
-        } 
+        }
     }
 
     @Override

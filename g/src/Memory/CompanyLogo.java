@@ -21,7 +21,7 @@ public class CompanyLogo extends JLabel implements ActionListener{
      private float alphaValue = 0f;//Value that decides how visible/transparent the image is
      private boolean operation = true;//flag that decides wether to increase or decrease alphaValue
      private final int X_POS = 0;// (width of frame - width of image)
-     private final int Y_POS = -150;// (height of frame - height of image)
+     private final int Y_POS = -250;// (height of frame - height of image)
      
     //done
     @Override
@@ -70,7 +70,7 @@ public class CompanyLogo extends JLabel implements ActionListener{
         //here is the thing, while the label only has a pic on it the actual label covers the whole frame
         //that means the label has a background that covers the white background of the frame. we can fix 
         //that by setting setOpaque to false, making the label's background invisible
-        this.setPreferredSize(new Dimension(1000,600));
+        this.setPreferredSize(new Dimension(1200,600));
         this.setOpaque(false);
         logoTimer.start();//starts the timer
     }

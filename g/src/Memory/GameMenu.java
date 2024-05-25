@@ -1,11 +1,14 @@
 package Memory;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
@@ -14,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class GameMenu extends JPanel implements MouseListener{
-    private final int WIDTH = 1000;
+    private final int WIDTH = 1200;
     private final int HEIGHT = 600;
     
     ImageIcon img = new ImageIcon("g/Assets/menuImage.jpg");
@@ -26,10 +29,14 @@ public class GameMenu extends JPanel implements MouseListener{
     public static volatile boolean runGame;
     private Font menuFont; //declare a font reference
     private File location = new File("g/Assets/GethoBold-v0wD.ttf"); //location of the font
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Image newCur1 = tk.getImage("g/Assets/cursorMain.png");
 
     {
         GameMenu.showAboutUsPage = false;
         this.setLayout(null);
+        Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
+        this.setCursor(mainCursor);
         
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
@@ -42,10 +49,10 @@ public class GameMenu extends JPanel implements MouseListener{
         startGame.setBounds(40, 120, 100, 30);
         startGame.setForeground(new Color(224, 224, 224));
 
-        aboutUs.setBounds(40, 188, 200, 30);
+        aboutUs.setBounds(40, 188, 160, 30);
         aboutUs.setForeground(new Color(224, 224, 224));
 
-        exit.setBounds(40, 258, 200, 30);
+        exit.setBounds(40, 258, 80, 30);
         exit.setForeground(new Color (200, 200, 200));
 
         try {
