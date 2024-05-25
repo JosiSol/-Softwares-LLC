@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-
 //resizing will make it obvious that the logo isnt centered so fix that too
 public class CompanyLogo extends JLabel implements ActionListener{
     // rearrange

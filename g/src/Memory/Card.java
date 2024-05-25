@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-
 public class Card extends JLabel implements MouseListener,ActionListener{
 
     //make private and make a setter method for it
@@ -77,5 +76,4 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     public void taken(){
         this.taken = true;
     }
-
 }

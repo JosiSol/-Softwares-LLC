@@ -2,7 +2,7 @@ package Memory;
 
 //main class that will handle the interaction between the game objects/components
 public class Game {
-	/*there is a bug where the about us button isnt back to normal size when we click it then go back to the menu*/
+    
     public static void main(String[] args)
     {   
         CardGame cardGame = new CardGame();
@@ -47,8 +47,6 @@ public class Game {
                 gamePanel.remove(cardGame);
                 cardGame = new CardGame();
             }
-
-    }
-
+        }
     }
 }

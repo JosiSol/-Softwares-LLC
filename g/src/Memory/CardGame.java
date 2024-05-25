@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -20,11 +24,12 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     private  final Integer[] possibleNum = {1,1,2,2,3,3,4,4,5,5,6,6};
     private Random rnd = new Random();
     private Timer t = new Timer(400,this);
+    private Font gameFont;
     ImageIcon backgroundImg = new ImageIcon("g/Assets/gameBackground.jpg");
     ImageIcon backButtonImg = new ImageIcon("g/Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
-
+    
     Card[] cardArr = new Card[12];
     
     {
@@ -43,8 +48,17 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         backButton.addMouseListener(this);
 
         tri = new JLabel("Back");
-        tri.setBounds(56,14,200,30);
-        tri.setFont(tri.getFont().deriveFont(25.0f));
+
+        try{
+            File location = new File("g/Assets/GethoBold-v0wD.ttf");
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
+            tri.setFont(gameFont);
+        }
+        catch(FontFormatException | IOException e ){
+            e.printStackTrace();
+        }
+
+        tri.setBounds(56,19,200,30);
         tri.addMouseListener(this);
 
         background.setBounds(250, 0, 1000, 600);
@@ -114,7 +128,6 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
                     Player.choices[0].taken();
                     Player.choices[1].taken();
                 }
-
                 
                 System.out.println("its player" + Player.Turn + "'s turn");
             }

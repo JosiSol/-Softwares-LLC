@@ -13,7 +13,6 @@ public class GamePanel extends JFrame{
     private final String ICON_PIC = "g/Assets/gameicon.png";//path of the icon
     private final ImageIcon GAME_ICON = new ImageIcon(ICON_PIC);//field that holds the image
     
-    
     {
         //rearrange order maybe put in constructor
         this.setTitle(GAME_NAME);

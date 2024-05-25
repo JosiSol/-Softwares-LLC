@@ -1,10 +1,17 @@
 package Memory;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.Dimension;
-import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class GameMenu extends JPanel implements MouseListener{
     private final int WIDTH = 1000;
@@ -17,6 +24,8 @@ public class GameMenu extends JPanel implements MouseListener{
     JLabel background = new JLabel(img);
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
+    private Font menuFont; //declare a font reference
+    private File location = new File("g/Assets/GethoBold-v0wD.ttf"); //location of the font
 
     {
         GameMenu.showAboutUsPage = false;
@@ -39,11 +48,16 @@ public class GameMenu extends JPanel implements MouseListener{
         exit.setBounds(40, 258, 200, 30);
         exit.setForeground(new Color (200, 200, 200));
 
-        startGame.setFont(startGame.getFont().deriveFont(25.0f));
-        aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
-        exit.setFont(exit.getFont().deriveFont(25.0f));
+        try {
+            menuFont = Font.createFont(Font.TRUETYPE_FONT, location);
+            menuFont = menuFont.deriveFont(25.0f); //set it to preferred size
+            aboutUs.setFont(menuFont);
+            startGame.setFont(menuFont);
+            exit.setFont(menuFont);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace(); //because it is a must to handle exception when using custom font
+        }
 
-        
         this.add(startGame);
         this.add(aboutUs);
         this.add(exit);
