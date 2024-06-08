@@ -21,10 +21,17 @@ public class AboutUs extends JPanel implements MouseListener{
         this.setPreferredSize(new Dimension(1200,600));
         this.setVisible(true);
         this.setBackground(Color.red);
-        tri = new JLabel("triangle");
+        tri = new JLabel("Back");
         tri.addMouseListener(this);
         this.add(tri);
-        this.add(new JLabel("Skrpap skrpap"));
+        this.add(new JLabel("                                               "));
+        this.add(new JLabel("Memory Game Developed By "));
+        this.add(new JLabel("1. Yosefe Tilahun  UGR/9673/15"));
+        this.add(new JLabel("2. Yabqal Brook    UGR/2822/15"));
+        this.add(new JLabel("3. Yohannes Ketema UGR/6290/15"));
+        this.add(new JLabel("4. Natnael Mesfin  UGR/8654/15"));
+        this.add(new JLabel("5. Yosef Solomon   UGR/7358/15"));
+        this.add(new JLabel("6. Mikiyas Fasil   UGR/9231/15"));
     }
 
     @Override
