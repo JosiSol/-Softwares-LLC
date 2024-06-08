@@ -7,7 +7,8 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class AboutUs extends JPanel implements MouseListener{
-    JLabel tri,label;
+    JLabel tri;
+    JButton button;
     ImageIcon icon = new ImageIcon("Assets/backButton.png");
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
@@ -16,13 +17,11 @@ public class AboutUs extends JPanel implements MouseListener{
         this.setCursor(mainCursor);
         this.setPreferredSize(new Dimension(1200,600));
         tri = new JLabel(icon);
-        label = new JLabel("Back");
-        tri.setBounds(30, 18, 25, 25);
-        label.setBounds(32,18,25,25);
+        button = new JButton("Back");
         tri.addMouseListener(this);
-        label.addMouseListener(this);
+        button.addMouseListener(this);
         this.add(tri);
-        this.add(label);
+        this.add(button);
         this.add(new JLabel("                                               "));
         this.add(new JLabel("Memory Game Developed By:   "));
         this.add(new JLabel("1. Yosefe Tilahun  UGR/9673/15     "));
