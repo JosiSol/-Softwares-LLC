@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class AboutUs extends JPanel implements MouseListener{
-    JLabel tri,label,label2;
+    JLabel tri,label;
     ImageIcon icon = new ImageIcon("Assets/backButton.png");
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
