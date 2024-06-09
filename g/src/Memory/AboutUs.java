@@ -47,8 +47,8 @@ public class AboutUs extends JPanel implements MouseListener{
         this.add(backButton);
         this.add(tri);
 
-        JLabel label = new JLabel("Welcome to Memory Game");
-        label.setBounds(550,19,400,30);
+        JLabel label = new JLabel("QIBE Games Present The Memory Game");
+        label.setBounds(500,19,600,30);
         JLabel label2 = new JLabel("The Memory Game was Developed By:");
         label2.setBounds(325,70,600,30);
         JLabel label3 = new JLabel("1. Yosefe Tilahun          UGR/9673/15");
