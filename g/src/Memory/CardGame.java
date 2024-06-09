@@ -28,16 +28,16 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
     private Random rnd = new Random();
     private Timer t = new Timer(400,this);
     private Font gameFont;
-    ImageIcon backgroundImg = new ImageIcon("g/Assets/gameBackground.jpg");
-    ImageIcon backButtonImg = new ImageIcon("g/Assets/backButton.png");
+    ImageIcon backgroundImg = new ImageIcon("Assets/gameBackground.jpg");
+    ImageIcon backButtonImg = new ImageIcon("Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
     
     Card[] cardArr = new Card[12];
 
     Toolkit tk = Toolkit.getDefaultToolkit();
-    Image newCur1 = tk.getImage("g/Assets/cursorMain.png");
-    Image turnCur = tk.getImage("g/Assets/curvedArrow.png");
+    Image newCur1 = tk.getImage("Assets/cursorMain.png");
+    Image turnCur = tk.getImage("Assets/curvedArrow.png");
     Cursor curvedArrow = tk.createCustomCursor(turnCur, getLocation(), TOOL_TIP_TEXT_KEY);
     {
         this.setLayout(null);
@@ -60,7 +60,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         tri = new JLabel("Back");
 
         try{
-            File location = new File("g/Assets/GethoBold-v0wD.ttf");
+            File location = new File("Assets/GethoBold-v0wD.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
             tri.setFont(gameFont);
         }

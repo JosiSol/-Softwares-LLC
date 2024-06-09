@@ -19,7 +19,7 @@ public class Card extends JLabel implements MouseListener,ActionListener{
 
     {
         t.setRepeats(false);
-        this.setIcon(new ImageIcon("g/Assets/initial.png"));
+        this.setIcon(new ImageIcon("Assets/initial.png"));
         this.addMouseListener(this);
         this.setVisible(true);        
     }
@@ -27,7 +27,7 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     @Override
     public void mouseClicked(MouseEvent e){
         if(closed){    
-            this.setIcon(new ImageIcon("g/Assets/open"+ pic +".gif"));
+            this.setIcon(new ImageIcon("Assets/open"+ pic +".gif"));
             t.start();
         }
     }
@@ -45,7 +45,7 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     public void mouseExited(MouseEvent e) {}
 
     void fail(){
-        this.setIcon(new ImageIcon("g/Assets/close"+ pic +".gif"));
+        this.setIcon(new ImageIcon("Assets/close"+ pic +".gif"));
         t.start(); 
     }
 
@@ -61,9 +61,9 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(closed){
-            this.setIcon(new ImageIcon("g/Assets/"+ pic +".png"));
+            this.setIcon(new ImageIcon("Assets/"+ pic +".png"));
         }else{
-            this.setIcon(new ImageIcon("g/Assets/initial.png"));
+            this.setIcon(new ImageIcon("Assets/initial.png"));
         }
 
         closed = !closed;

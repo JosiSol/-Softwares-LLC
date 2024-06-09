@@ -20,7 +20,7 @@ public class GameMenu extends JPanel implements MouseListener{
     private final int WIDTH = 1200;
     private final int HEIGHT = 600;
     
-    ImageIcon img = new ImageIcon("g/Assets/menuImage.jpg");
+    ImageIcon img = new ImageIcon("Assets/menuImage.jpg");
     JLabel startGame = new JLabel("START");
     JLabel aboutUs = new JLabel("ABOUT US");
     JLabel exit = new JLabel("EXIT");
@@ -28,9 +28,9 @@ public class GameMenu extends JPanel implements MouseListener{
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
     private Font menuFont; //declare a font reference
-    private File location = new File("g/Assets/GethoBold-v0wD.ttf"); //location of the font
+    private File location = new File("Assets/GethoBold-v0wD.ttf"); //location of the font
     Toolkit tk = Toolkit.getDefaultToolkit();
-    Image newCur1 = tk.getImage("g/Assets/cursorMain.png");
+    Image newCur1 = tk.getImage("Assets/cursorMain.png");
 
     {
         GameMenu.showAboutUsPage = false;
