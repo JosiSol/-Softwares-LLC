@@ -53,13 +53,13 @@ public class AboutUs extends JPanel implements MouseListener{
         label2.setBounds(325,70,600,30);
         JLabel label3 = new JLabel("1. Yosefe Tilahun          UGR/9673/15");
         label3.setBounds(450,120,600,30);
-        JLabel label4 = new JLabel("2. Yabqal Brook            UGR/2822/15");
+        JLabel label4 = new JLabel("2. Yabqal Brook              UGR/2822/15");
         label4.setBounds(450,170,600,30);
         JLabel label5 = new JLabel("3. Yohannes Ketema     UGR/6290/15");
         label5.setBounds(450,220,600,30);
         JLabel label6 = new JLabel("4. Natnael Mesfin     UGR/8654/15");
         label6.setBounds(450,270,600,30);
-        JLabel label7 = new JLabel("5. Mikiyas Fasil     UGR/9231/15");
+        JLabel label7 = new JLabel("5. Mikiyas Fasil       UGR/9231/15");
         label7.setBounds(450,320,600,30);
         JLabel label8 = new JLabel("6. Yosef Solomon     UGR/7358/15");
         label8.setBounds(450,370,600,30);

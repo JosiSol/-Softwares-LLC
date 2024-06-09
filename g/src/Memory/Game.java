@@ -21,7 +21,7 @@ public class Game {
         
         while(true){
 
-            gamePanel.getContentPane().add(gameMenu);// button wont be visib le after adding unless we refresh the screen or set the bounds
+            gamePanel.getContentPane().add(gameMenu);// button wont be visible after adding unless we refresh the screen or set the bounds
             gamePanel.repaint();
             gamePanel.pack();
             while(!GameMenu.showAboutUsPage && !GameMenu.runGame){}//waste timer till user makes a choice
