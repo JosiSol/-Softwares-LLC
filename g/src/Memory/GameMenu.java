@@ -152,7 +152,6 @@ public class GameMenu extends JPanel implements MouseListener{
             //aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
             aboutUs.setForeground(new Color(224, 224, 224));
         }
-
     }
     public GameMenu(){}
 }

@@ -76,4 +76,7 @@ public class Card extends JLabel implements MouseListener,ActionListener{
     public void taken(){
         this.taken = true;
     }
+    public void notTaken(){
+        this.taken = false;
+    }
 }

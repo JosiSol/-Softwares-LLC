@@ -12,4 +12,7 @@ public final class Player {
         playerScore++;
         return playerScore;
     }
+    public int getScore(){
+        return playerScore;
+    }
 }

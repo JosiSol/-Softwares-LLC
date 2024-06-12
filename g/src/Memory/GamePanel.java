@@ -1,6 +1,6 @@
 package Memory;
 
-import java.awt.Color;
+import java.awt.*;
 import java.lang.String;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,6 +15,7 @@ public class GamePanel extends JFrame{
     
     {
         //rearrange order maybe put in constructor
+        this.setLayout(new BorderLayout());
         this.setTitle(GAME_NAME);
         this.setSize(WIDTH, HEIGHT);
         this.getContentPane().setBackground(Color.BLACK);//color the frame white
