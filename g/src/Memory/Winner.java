@@ -1,11 +1,11 @@
 package Memory;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.*;
 
 public class Winner extends JPanel implements MouseListener {
     JLabel winner, retry, mainMenu;
@@ -66,7 +66,7 @@ public class Winner extends JPanel implements MouseListener {
             GameMenu.runGame = false;
             System.out.println("Back to square one");
             if (e.getSource() == retry) {
-                timer.start();
+                GameMenu.runGame = true;
             }
         }
 
