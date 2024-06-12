@@ -23,23 +23,28 @@ import javax.swing.Timer;
 
 //Add a function that resets all the cards and scores when the triangle is clicked
 public class CardGame extends JPanel implements MouseListener,ActionListener{
-    private JLabel tri;
+    Player p1;
+    Player p2;
+    private JLabel tri, playerTurn;
     private  final Integer[] possibleNum = {1,1,2,2,3,3,4,4,5,5,6,6};
     private Random rnd = new Random();
     private Timer t = new Timer(400,this);
     private Font gameFont;
+    private JLabel score[];
+    private JPanel winner = new JPanel();
     ImageIcon backgroundImg = new ImageIcon("Assets/gameBackground.jpg");
     ImageIcon backButtonImg = new ImageIcon("Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
-    
     Card[] cardArr = new Card[12];
-
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
     Image turnCur = tk.getImage("Assets/curvedArrow.png");
     Cursor curvedArrow = tk.createCustomCursor(turnCur, getLocation(), TOOL_TIP_TEXT_KEY);
     {
+        p1 = new Player();
+        p2 = new Player();
+
         this.setLayout(null);
         Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
         
@@ -58,6 +63,16 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
         backButton.addMouseListener(this);
 
         tri = new JLabel("Back");
+        score = new JLabel[3];
+        for(int i = 0; i < 3; i++){
+            score[i] = new JLabel("0");
+            score[i].setBounds(300+20*i,18,25,25);
+            score[i].setFont(new Font("Arial",Font.BOLD,24));
+            this.add(score[i]);
+        }
+        score[1].setText("-");
+        score[0].setForeground(Color.RED);
+        score[2].setForeground(Color.BLUE);
 
         try{
             File location = new File("Assets/GethoBold-v0wD.ttf");
@@ -70,6 +85,11 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
 
         tri.setBounds(56,19,200,30);
         tri.addMouseListener(this);
+
+        playerTurn = new JLabel("Player 1");
+        playerTurn.setBounds(300,40,100,25);
+        playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
+        playerTurn.setForeground(Color.RED);
 
         background.setBounds(250, 0, 1000, 600);
 
@@ -100,11 +120,13 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
 
         this.add(backButton);
         this.add(tri);
+        this.add(playerTurn);
 
         for(int i = 0; i < 12; i++){
             this.add(cardArr[i]);
         }
         this.add(background);
+
     }
 
     @Override
@@ -129,17 +151,26 @@ public class CardGame extends JPanel implements MouseListener,ActionListener{
                     t.start();
                     if(Player.Turn == Player.Choice.FIRST){
                         Player.Turn = Player.Choice.SECOND;
+                        playerTurn.setText("Player 2");
+                        playerTurn.setForeground(Color.BLUE);
                     }
                     else{
                         Player.Turn = Player.Choice.FIRST;
+                        playerTurn.setText("Player 1");
+                        playerTurn.setForeground(Color.RED);
                     }
                 }
                 else{
                     System.out.println("player " + Player.Turn + "up by a point");
+                    if(Player.Turn == Player.Choice.FIRST){
+                        score[0].setText(String.valueOf(p1.oneUp()));
+                    }
+                    else{
+                        score[2].setText(String.valueOf(p2.oneUp()));
+                    }
                     Player.choices[0].taken();
                     Player.choices[1].taken();
                 }
-                
                 System.out.println("its player" + Player.Turn + "'s turn");
             }
         }

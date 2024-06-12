@@ -29,8 +29,10 @@ public class AboutUs extends JPanel implements MouseListener, ActionListener {
         backButton.setBounds(30,18,25,25);
         backButton.addMouseListener(this);
 
-        button1 = new JButton("Next");
-        button2 = new JButton("Previous");
+        button1 = new JButton("Previous");
+        button2 = new JButton("Next");
+        button1.setFont(new Font("Arial", Font.BOLD, 16));
+        button2.setFont(new Font("Arial", Font.BOLD, 16));
 
         button1.setBounds(540,510,80,60);
         button2.setBounds(750,510,80,60);
