@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 public class Winner extends JPanel implements MouseListener {
     JLabel winner, retry, mainMenu;
@@ -22,16 +24,14 @@ public class Winner extends JPanel implements MouseListener {
         this.setBounds(0, 0, 1200, 600);
 
         winner = new JLabel();
-        winner.setBounds(425,100,250,200);
+        winner.setBounds(500,85,300,200);
 
         retry = new JLabel("Retry");
         retry.setBounds(350,200,250,250);
-        retry.setFont(new Font("Serif", Font.BOLD, 25));
         retry.addMouseListener(this);
 
         mainMenu = new JLabel("Return to Main Menu");
-        mainMenu.setBounds(650,200,250,250);
-        mainMenu.setFont(new Font("Serif", Font.BOLD, 25));
+        mainMenu.setBounds(660,200,300,250);
         mainMenu.addMouseListener(this);
 
         this.add(winner);
@@ -40,42 +40,49 @@ public class Winner extends JPanel implements MouseListener {
         timer.setRepeats(false);
 
     }
-    public Winner(int p1){
-        if(p1 > 0) {
-            winner.setText("WINNER! Player 1!");
-            winner.setFont(new Font("Serif", Font.BOLD, 28));
-            this.setBackground(Color.RED);
-        }
-        else if(p1 == 0){
-            winner.setText("DRAW!");
-            winner.setFont(new Font("Serif", Font.BOLD, 28));
-            this.setBackground(Color.LIGHT_GRAY);
+    public Winner(int p1) {
+        try {
+            File location = new File("Assets/GethoBold-v0wD.ttf");
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
+            winner.setFont(gameFont);
+            retry.setFont(gameFont);
+            mainMenu.setFont(gameFont);
+            if (p1 > 0) {
+                winner.setText("WINNER! Player ONE!");
+                this.setBackground(Color.RED);
+            } else if (p1 == 0) {
+                winner.setText("DRAW!");
+                this.setBackground(Color.LIGHT_GRAY);
+            } else {
+                winner.setText("WINNER! Player TWO!");
+                this.setBackground(Color.BLUE);
             }
-        else{
-            winner.setText("WINNER! Player 2!");
-            winner.setFont(new Font("Serif", Font.BOLD, 28));
-            this.setBackground(Color.BLUE);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
         }
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        GameMenu.runGame = false;
-        System.out.println("Back to square one");
-        if (e.getSource() == retry){
-            timer.start();
+            @Override
+            public void mouseClicked (MouseEvent e){
+            GameMenu.runGame = false;
+            System.out.println("Back to square one");
+            if (e.getSource() == retry) {
+                timer.start();
+            }
         }
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mousePressed (MouseEvent e){
+            }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseReleased (MouseEvent e){
+            }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseEntered (MouseEvent e){
+            }
 
-    @Override
-    public void mouseExited(MouseEvent e) {}
-}
+            @Override
+            public void mouseExited (MouseEvent e){
+            }
+        }

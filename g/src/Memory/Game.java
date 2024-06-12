@@ -17,7 +17,7 @@ public class Game {
         while(companyLogo.getDisplayingLogo()){}//just wasting time till the logo is done displaying
         gamePanel.getContentPane().remove(companyLogo);
         //nvm just dont let bro change the screen size at all
-        //gamePanel.setResizable(true);
+        //dgamePanel.setResizable(true);
         
         while(true){
 
