@@ -1,6 +1,8 @@
 package Memory;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -8,8 +10,9 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-public class AboutUs extends JPanel implements MouseListener{
+public class AboutUs extends JPanel implements MouseListener, ActionListener {
     JLabel backButton,background,tri;
+    JButton button1, button2;
     ImageIcon icon = new ImageIcon("Assets/backButton.png");
     ImageIcon icon2 = new ImageIcon("Assets/Background.png");
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -26,6 +29,13 @@ public class AboutUs extends JPanel implements MouseListener{
         backButton.setBounds(30,18,25,25);
         backButton.addMouseListener(this);
 
+        button1 = new JButton("Next");
+        button2 = new JButton("Previous");
+
+        button1.setBounds(540,510,80,60);
+        button2.setBounds(750,510,80,60);
+        button1.addActionListener(this);
+        button2.addActionListener(this);
 
         tri = new JLabel("Back");
 
@@ -46,9 +56,11 @@ public class AboutUs extends JPanel implements MouseListener{
 
         this.add(backButton);
         this.add(tri);
+        this.add(button1);
+        this.add(button2);
 
         JLabel label = new JLabel("QIBE Games Present The Memory Game");
-        label.setBounds(500,19,600,30);
+        label.setBounds(480,19,600,30);
         JLabel label2 = new JLabel("The Memory Game was Developed By:");
         label2.setBounds(325,70,600,30);
         JLabel label3 = new JLabel("1. Yosefe Tilahun          UGR/9673/15");
@@ -57,11 +69,11 @@ public class AboutUs extends JPanel implements MouseListener{
         label4.setBounds(450,170,600,30);
         JLabel label5 = new JLabel("3. Yohannes Ketema     UGR/6290/15");
         label5.setBounds(450,220,600,30);
-        JLabel label6 = new JLabel("4. Natnael Mesfin     UGR/8654/15");
+        JLabel label6 = new JLabel("4. Natnael Mesfin           UGR/8654/15");
         label6.setBounds(450,270,600,30);
-        JLabel label7 = new JLabel("5. Mikiyas Fasil       UGR/9231/15");
+        JLabel label7 = new JLabel("5. Mikiyas Fasil             UGR/9231/15");
         label7.setBounds(450,320,600,30);
-        JLabel label8 = new JLabel("6. Yosef Solomon     UGR/7358/15");
+        JLabel label8 = new JLabel("6. Yosef Solomon            UGR/7358/15");
         label8.setBounds(450,370,600,30);
 
         try{
@@ -109,4 +121,14 @@ public class AboutUs extends JPanel implements MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     public AboutUs(){}
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button1){
+
+        }
+        if (e.getSource() == button2){
+
+        }
+    }
 }
