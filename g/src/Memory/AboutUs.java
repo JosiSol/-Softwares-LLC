@@ -9,128 +9,124 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class AboutUs extends JPanel implements MouseListener, ActionListener {
-    JLabel backButton,background,tri;
-    JButton button1, button2;
+public class AboutUs extends JPanel implements MouseListener {
+    JLabel backButton, background, tri, label1, label2;
     ImageIcon icon = new ImageIcon("Assets/backButton.png");
     ImageIcon icon2 = new ImageIcon("Assets/Background.png");
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
     private Font gameFont;
+
     {
         this.setLayout(null);
-        Cursor mainCursor = tk.createCustomCursor(newCur1,getLocation(),TOOL_TIP_TEXT_KEY);
+        Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
         this.setCursor(mainCursor);
-        this.setPreferredSize(new Dimension(1200,600));
+        this.setPreferredSize(new Dimension(1200, 600));
         this.setVisible(true);
 
         backButton = new JLabel(icon);
-        backButton.setBounds(30,18,25,25);
+        backButton.setBounds(30, 18, 25, 25);
         backButton.addMouseListener(this);
 
-        button1 = new JButton("Previous");
-        button2 = new JButton("Next");
-        button1.setFont(new Font("Arial", Font.BOLD, 16));
-        button2.setFont(new Font("Arial", Font.BOLD, 16));
+        label1 = new JLabel("Previous");
+        label2 = new JLabel("Next");
+        label2.addMouseListener(this);
 
-        button1.setBounds(540,510,80,60);
-        button2.setBounds(750,510,80,60);
-        button1.addActionListener(this);
-        button2.addActionListener(this);
+        label1.setBounds(520, 510, 120, 60);
+        label2.setBounds(840, 510, 80, 60);
 
         tri = new JLabel("Back");
 
-        try{
+        try {
             File location = new File("Assets/GethoBold-v0wD.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
             tri.setFont(gameFont);
-        }
-        catch(FontFormatException | IOException e ){
+            label1.setFont(gameFont);
+            label2.setFont(gameFont);
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
 
-        tri.setBounds(56,19,200,30);
+        tri.setBounds(56, 19, 200, 30);
         tri.addMouseListener(this);
 
         background = new JLabel(icon2);
-        background.setBounds(250,0,1000,600);
+        background.setBounds(250, 0, 1000, 600);
 
         this.add(backButton);
         this.add(tri);
-        this.add(button1);
-        this.add(button2);
+        this.add(label1);
+        this.add(label2);
+
+        JTextArea textArea = new JTextArea(25, 25);
+        textArea.setBounds(310, 50, 850, 460);
+        textArea.setText("About Us\n\n" +
+                "We are Qibe Games, a subsidiary of Qibe Softwares LLC, founded by\n" +
+                "six second-year Computer Science students for our OOP course\n" +
+                "project in Java. With a passion for gaming and cognitive sciences, \n" +
+                "we developed a simple yet fun memory game where players match \n" +
+                "cards they see. \n" +
+                "Our game includes various themes and difficulty levels to keep it \n" +
+                "engaging.\n" +
+                "\n" +
+                "We extend our heartfelt thanks to our instructor, Nesredien S.,\n" +
+                "for instilling key concepts through engaging lectures, advising\n" +
+                "us to start working on our project early, and providing his\n" +
+                "valuable guidance. We hope you enjoy our very first game!");
+
+        textArea.setOpaque(false);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        this.setVisible(true);
+        scrollPane.setBounds(310, 50, 850, 460);
+
 
         JLabel label = new JLabel("QIBE Games Present The Memory Game");
-        label.setBounds(480,19,600,30);
-        JLabel label2 = new JLabel("The Memory Game was Developed By:");
-        label2.setBounds(325,70,600,30);
-        JLabel label3 = new JLabel("1. Yosefe Tilahun          UGR/9673/15");
-        label3.setBounds(450,120,600,30);
-        JLabel label4 = new JLabel("2. Yabqal Brook              UGR/2822/15");
-        label4.setBounds(450,170,600,30);
-        JLabel label5 = new JLabel("3. Yohannes Ketema     UGR/6290/15");
-        label5.setBounds(450,220,600,30);
-        JLabel label6 = new JLabel("4. Natnael Mesfin           UGR/8654/15");
-        label6.setBounds(450,270,600,30);
-        JLabel label7 = new JLabel("5. Mikiyas Fasil             UGR/9231/15");
-        label7.setBounds(450,320,600,30);
-        JLabel label8 = new JLabel("6. Yosef Solomon            UGR/7358/15");
-        label8.setBounds(450,370,600,30);
-
-        try{
+        label.setBounds(480, 19, 600, 30);
+        try {
             File location = new File("Assets/GethoBold-v0wD.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
             label.setFont(gameFont);
-            label2.setFont(gameFont);
-            label3.setFont(gameFont);
-            label4.setFont(gameFont);
-            label5.setFont(gameFont);
-            label6.setFont(gameFont);
-            label7.setFont(gameFont);
-            label8.setFont(gameFont);
-
-        }
-        catch(FontFormatException | IOException e ){
+            textArea.setFont(gameFont);
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
         this.add(label);
-        this.add(label2);
-        this.add(label3);
-        this.add(label4);
-        this.add(label5);
-        this.add(label6);
-        this.add(label7);
-        this.add(label8);
+        this.add(textArea);
         this.add(background);
-    }
-    @Override
-    public void mouseClicked(MouseEvent e){
-        GameMenu.showAboutUsPage = false;
-        System.out.println("Back to square one");
+
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
-    public AboutUs(){}
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button1){
-
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == backButton || e.getSource() == tri) {
+            GameMenu.showAboutUsPage = false;
+            System.out.println("Back to square one");
         }
-        if (e.getSource() == button2){
-
+        if (e.getSource() == label2) {
         }
     }
-}
+
+        @Override
+        public void mousePressed (MouseEvent e){
+        }
+
+        @Override
+        public void mouseReleased (MouseEvent e){
+        }
+
+        @Override
+        public void mouseEntered (MouseEvent e){
+        }
+
+        @Override
+        public void mouseExited (MouseEvent e){
+        }
+
+    public AboutUs() {}
+    }
+
+
