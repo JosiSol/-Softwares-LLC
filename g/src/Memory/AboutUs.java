@@ -31,21 +31,12 @@ public class AboutUs extends JPanel implements MouseListener {
         backButton.setBounds(30, 18, 25, 25);
         backButton.addMouseListener(this);
 
-        label1 = new JLabel("Previous");
-        label2 = new JLabel("Next");
-        label2.addMouseListener(this);
-
-        label1.setBounds(520, 510, 120, 60);
-        label2.setBounds(840, 510, 80, 60);
-
         tri = new JLabel("Back");
 
         try {
             File location = new File("Assets/GethoBold-v0wD.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
             tri.setFont(gameFont);
-            label1.setFont(gameFont);
-            label2.setFont(gameFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
@@ -58,44 +49,53 @@ public class AboutUs extends JPanel implements MouseListener {
 
         this.add(backButton);
         this.add(tri);
-        this.add(label1);
-        this.add(label2);
 
         JTextArea textArea = new JTextArea(25, 25);
         textArea.setBounds(310, 50, 850, 460);
-        textArea.setText("About Us\n\n" +
-                "We are Qibe Games, a subsidiary of Qibe Softwares LLC, founded by\n" +
-                "six second-year Computer Science students for our OOP course\n" +
-                "project in Java. With a passion for gaming and cognitive sciences, \n" +
-                "we developed a simple yet fun memory game where players match \n" +
-                "cards they see. \n" +
-                "Our game includes various themes and difficulty levels to keep it \n" +
-                "engaging.\n" +
-                "\n" +
-                "We extend our heartfelt thanks to our instructor, Nesredien S.,\n" +
-                "for instilling key concepts through engaging lectures, advising\n" +
-                "us to start working on our project early, and providing his\n" +
-                "valuable guidance. We hope you enjoy our very first game!");
 
+        JLabel label = new JLabel("QIBE Games Present, The Memory Game");
+        label.setBounds(480, 19, 600, 30);
+
+        textArea.setText(
+                label.getText() +
+
+                "\n\n About Us \n\n" +
+                "We are Qibe Games, a subsidiary of Qibe Softwares LLC, founded by six second-year Computer Science students for our OOP course project in Java. With a passion for gaming and cognitive sciences, we developed a simple yet fun memory game where players match cards they see. Our game includes various themes and difficulty levels to keep it engaging.\n" +
+                "\n" +
+                "We extend our heartfelt thanks to our instructor, Nesredien S., for instilling key concepts through engaging lectures, advising us to start working on our project early, and providing his valuable guidance. We hope you enjoy our very first game! \n\n"+
+                "The Members \n\n" +
+                "Yosefe Tilahun \t UGR/9673/15 \n"+
+                "Yabqal Brook \t\t UGR/2822/15 \n" +
+                "Yosef Solomon \t UGR/7358/15 \n"+
+                "Natnael Mesfin \t UGR/8654/15 \n" +
+                "Yohannes Ketema \t UGR/6290/15 \n" +
+                "Mikiyas Fasil \t\t UGR/9231/15 \n"
+        );
+
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         textArea.setOpaque(false);
         textArea.setEditable(false);
+
         JScrollPane scrollPane = new JScrollPane(textArea);
         this.setVisible(true);
-        scrollPane.setBounds(310, 50, 850, 460);
+        scrollPane.setBounds(310, 50, 850, 560);
 
-
-        JLabel label = new JLabel("QIBE Games Present The Memory Game");
-        label.setBounds(480, 19, 600, 30);
         try {
-            File location = new File("Assets/GethoBold-v0wD.ttf");
+            File location = new File("Assets/Ubuntu-Medium.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, location).deriveFont(25.0f);
             label.setFont(gameFont);
             textArea.setFont(gameFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
-        this.add(label);
-        this.add(textArea);
+
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(null);
+        scrollPane.setOpaque(false);
+
+        this.add(scrollPane);
         this.add(background);
 
     }
@@ -106,27 +106,23 @@ public class AboutUs extends JPanel implements MouseListener {
             GameMenu.showAboutUsPage = false;
             System.out.println("Back to square one");
         }
-        if (e.getSource() == label2) {
-        }
     }
 
-        @Override
-        public void mousePressed (MouseEvent e){
-        }
+    @Override
+    public void mousePressed (MouseEvent e){
+    }
 
-        @Override
-        public void mouseReleased (MouseEvent e){
-        }
+    @Override
+    public void mouseReleased (MouseEvent e){
+    }
 
-        @Override
-        public void mouseEntered (MouseEvent e){
-        }
+    @Override
+    public void mouseEntered (MouseEvent e){
+    }
 
-        @Override
-        public void mouseExited (MouseEvent e){
-        }
+    @Override
+    public void mouseExited (MouseEvent e){
+    }
 
     public AboutUs() {}
-    }
-
-
+}
