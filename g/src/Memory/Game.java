@@ -6,6 +6,7 @@ public class Game {
     public static void main(String[] args)
     {   
         CardGame cardGame = new CardGame();
+        PlayerInput playerInput = new PlayerInput();
         AboutUs aboutUs = new AboutUs();
         GameMenu gameMenu = new GameMenu();
         CompanyLogo companyLogo = new CompanyLogo();
@@ -24,7 +25,7 @@ public class Game {
             gamePanel.getContentPane().add(gameMenu);// button wont be visible after adding unless we refresh the screen or set the bounds
             gamePanel.repaint();
             gamePanel.pack();
-            while(!GameMenu.showAboutUsPage && !GameMenu.runGame){}//waste timer till user makes a choice
+            while(!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice){}//waste timer till user makes a choice
             gamePanel.getContentPane().remove(gameMenu);
             if(GameMenu.showAboutUsPage)
             {
@@ -36,6 +37,14 @@ public class Game {
                 while(GameMenu.showAboutUsPage){}/*back button wasn't clicked*/
                 gamePanel.remove(aboutUs);
                 
+            }
+            else if(GameMenu.playerChoice){
+                gamePanel.getContentPane().add(playerInput);
+                gamePanel.repaint();
+                gamePanel.pack();
+                System.out.println("cool");
+                while (GameMenu.playerChoice){}
+                gamePanel.remove(playerInput);
             }
             else if(GameMenu.runGame) 
             {

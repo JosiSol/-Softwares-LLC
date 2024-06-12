@@ -27,6 +27,7 @@ public class GameMenu extends JPanel implements MouseListener{
     JLabel background = new JLabel(img);
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
+    public static volatile boolean playerChoice;
     private Font menuFont; //declare a font reference
     private File location = new File("Assets/GethoBold-v0wD.ttf"); //location of the font
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -91,7 +92,7 @@ public class GameMenu extends JPanel implements MouseListener{
         }
         if(e.getSource() == startGame)
         {
-            GameMenu.runGame = true;
+            GameMenu.playerChoice = true;
         }
     }
 

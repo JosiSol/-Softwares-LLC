@@ -48,13 +48,13 @@ public class Winner extends JPanel implements MouseListener {
             retry.setFont(gameFont);
             mainMenu.setFont(gameFont);
             if (p1 > 0) {
-                winner.setText("WINNER! Player ONE!");
+                winner.setText("WINNER! " + PlayerInput.playerOneName );
                 this.setBackground(Color.RED);
             } else if (p1 == 0) {
                 winner.setText("DRAW!");
                 this.setBackground(Color.LIGHT_GRAY);
             } else {
-                winner.setText("WINNER! Player TWO!");
+                winner.setText("WINNER! " + PlayerInput.playerTwoName);
                 this.setBackground(Color.BLUE);
             }
         } catch (FontFormatException | IOException e) {

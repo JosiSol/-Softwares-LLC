@@ -94,11 +94,6 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         tri.setBounds(56, 19, 200, 30);
         tri.addMouseListener(this);
 
-        playerTurn = new JLabel("Player 1");
-        playerTurn.setBounds(300, 40, 100, 25);
-        playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
-        playerTurn.setForeground(Color.RED);
-
         background.setBounds(250, 0, 1000, 600);
 
         Arrays.sort(possibleNum, (a, b) -> rnd.nextInt() - rnd.nextInt());
@@ -125,6 +120,11 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
             cardArr[i].addMouseListener(this);
             cardArr[i].setCursor(curvedArrow);
         }
+
+        playerTurn = new JLabel(PlayerInput.playerOneName);
+        playerTurn.setBounds(300, 40, 100, 25);
+        playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
+        playerTurn.setForeground(Color.RED);
 
         this.add(backButton);
         this.add(tri);
@@ -158,11 +158,11 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
 
                     if (Player.Turn == Player.Choice.FIRST) {
                         Player.Turn = Player.Choice.SECOND;
-                        playerTurn.setText("Player 2");
+                        playerTurn.setText(PlayerInput.playerTwoName);
                         playerTurn.setForeground(Color.BLUE);
                     } else {
                         Player.Turn = Player.Choice.FIRST;
-                        playerTurn.setText("Player 1");
+                        playerTurn.setText(PlayerInput.playerOneName);
                         playerTurn.setForeground(Color.RED);
                     }
                 } else {
@@ -246,7 +246,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         }
         Player.choiceNum = Player.Choice.FIRST;
         Player.Turn = Player.Choice.FIRST;
-        playerTurn.setText("Player 1");
+        playerTurn.setText(PlayerInput.playerOneName);
 
     }
 }
