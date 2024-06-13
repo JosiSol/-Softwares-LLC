@@ -13,39 +13,54 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.HashSet;
+import java.util.Set;
 
 
 //Add a function that resets all the cards and scores when the triangle is clicked
 public class CardGame extends JPanel implements MouseListener,ActionListener {
+    Set<Integer> uniqueNumbers = new HashSet<>();
+    static volatile public int gridSize;
+    private final int [] row = {4,5,6},
+            col = {3,4,6},
+            vl = {70,40,20},
+            hl = {100,50,10},
+            nc={4*3,5*4,6*6};
+
     Player p1;
     Player p2;
     JPanel gridPanel;
-    private JLabel tri, playerTurn;
-    private final Integer[] possibleNum = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
-    private Random rnd = new Random();
-    private Timer t = new Timer(400, this);
-    private Timer end = new Timer(500, e -> {
-        if (p1.getScore() + p2.getScore() == 6) {
+
+    static volatile boolean stillOn = true;
+    private final JLabel tri, playerTurn;
+
+    private final Random rnd = new Random();
+    private final Timer t = new Timer(400, this);
+    private final Timer end = new Timer(500, e -> {
+        if (p1.getScore() + p2.getScore() == nc[CardGame.gridSize]/2) {
             this.removeAll();
             this.repaint();
             this.add(new Winner(p1.getScore() - p2.getScore()));
+
+            stillOn = true;
             this.restore();
         }
     });
     private Font gameFont;
-    private JLabel score[];
-    private JPanel winner = new JPanel();
+    private final JLabel[] score;
     ImageIcon backgroundImg = new ImageIcon("Assets/gameBackground.jpg");
     ImageIcon backButtonImg = new ImageIcon("Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
-    Card[] cardArr = new Card[12];
+    Card[] cardArr = new Card[36];
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
     Image turnCur = tk.getImage("Assets/curvedArrow.png");
     Cursor curvedArrow = tk.createCustomCursor(turnCur, getLocation(), TOOL_TIP_TEXT_KEY);
+
+    public Integer[] possibleNum;
+
     {
-        end.setRepeats(false);
         p1 = new Player();
         p2 = new Player();
 
@@ -57,7 +72,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         Player.choiceNum = Player.Choice.FIRST;
         Player.Turn = Player.Choice.FIRST;
 
-        //this.setLayout(null);
+
         this.setPreferredSize(new Dimension(1200, 600));
         this.setVisible(true);
         this.setBackground(Color.white);
@@ -72,7 +87,6 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
             score[i] = new JLabel("0");
             score[i].setBounds(300 + 20 * i, 18, 25, 25);
             score[i].setFont(new Font("Arial", Font.BOLD, 24));
-            this.add(score[i]);
         }
         score[1].setText("-");
         score[0].setForeground(Color.RED);
@@ -86,23 +100,13 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
             e.printStackTrace();
         }
 
+
         tri.setBounds(56, 19, 200, 30);
         tri.addMouseListener(this);
 
         background.setBounds(250, 0, 1000, 600);
 
-        Arrays.sort(possibleNum, (a, b) -> rnd.nextInt() - rnd.nextInt());
-        for (int i = 0; i < 12; i++) {
-            cardArr[i] = new Card(600, 20, possibleNum[i]);
-        }
-
         gridPanel = new JPanel();
-        gridPanel.setLayout(new GridLayout(4, 3, 100, 70));
-
-        for (int i = 0; i < 12; i++) {
-            cardArr[i].addMouseListener(this);
-            cardArr[i].setCursor(curvedArrow);
-        }
 
         gridPanel.setBounds(600, 20, 350, 520);
 
@@ -111,19 +115,69 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
         playerTurn.setForeground(Color.RED);
 
+
+
+
+        gridPanel.setOpaque(false);
+
+
+
+    }
+    public void start(){
+
+        this.removeAll();
+
+        playerTurn.setText(PlayerInput.playerOneName);
+
         this.add(backButton);
         this.add(tri);
         this.add(playerTurn);
 
-        for (int i = 0; i < 12; i++) {
-            gridPanel.add(cardArr[i]);
+        for(int i = 0;i < 3;i++){
+            this.add(score[i]);
         }
-
-        gridPanel.setOpaque(false);
 
         this.add(gridPanel);
         this.add(background);
 
+        possibleNum = new Integer[nc[CardGame.gridSize]];
+
+        while (uniqueNumbers.size() < nc[CardGame.gridSize]/2) {
+            int randomNumber = rnd.nextInt(18) + 1;
+            uniqueNumbers.add(randomNumber);
+        }
+
+        int indArr = 0;
+        for(Integer num : uniqueNumbers)
+        {
+            System.out.println(num);
+            possibleNum[indArr] = num;
+            possibleNum[indArr + 1] = num;
+
+            indArr += 2;
+        }
+        System.out.println("not cool");
+        Arrays.sort(possibleNum, (a, b) -> rnd.nextInt() - rnd.nextInt());
+
+        System.out.println("not cool");
+        for (int i = 0; i < nc[CardGame.gridSize]; i++) {
+            System.out.println(i);
+            cardArr[i] = new Card(possibleNum[i]);
+        }
+        System.out.println("not cool");
+        gridPanel.setLayout(new GridLayout(row[CardGame.gridSize], col[CardGame.gridSize], hl[CardGame.gridSize], vl[CardGame.gridSize]));
+
+        for (int i = 0; i < nc[CardGame.gridSize]; i++) {
+            cardArr[i].addMouseListener(this);
+            cardArr[i].setCursor(curvedArrow);
+        }
+
+
+        for (int i = 0; i < nc[CardGame.gridSize]; i++) {
+            gridPanel.add(cardArr[i]);
+        }
+
+       // end.setRepeats(false);
     }
 
     @Override
@@ -225,17 +279,27 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
     }
 
     public void restore() {
+
         for (int i = 0; i < 3; i++) {
             score[i].setText("0");
         }
         score[1].setText("-");
-        for(int i = 0; i < 12; i++){
-            cardArr[i].fail();
+
+        for(int i = 0; i < nc[CardGame.gridSize]; i++){
+            if(cardArr[i].getTaken())
+                cardArr[i].fail();
             cardArr[i].notTaken();
         }
+
+        gridPanel.removeAll();
+
         Player.choiceNum = Player.Choice.FIRST;
         Player.Turn = Player.Choice.FIRST;
         playerTurn.setText(PlayerInput.playerOneName);
+        playerTurn.setForeground(Color.RED);
+        p1.resetScore();
+        p2.resetScore();
+        end.setRepeats(false);
 
     }
 }

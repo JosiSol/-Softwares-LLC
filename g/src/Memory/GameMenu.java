@@ -39,7 +39,7 @@ public class GameMenu extends JPanel implements MouseListener{
 
     // Font variables
     private Font menuFont; // Declare a font reference
-    private File location = new File("Assets/GethoBold-v0wD.ttf"); // Location of the font
+    private final File location = new File("Assets/GethoBold-v0wD.ttf"); // Location of the font
 
     // Toolkit for custom cursor
     Toolkit tk = Toolkit.getDefaultToolkit();

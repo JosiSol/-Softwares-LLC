@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class PlayerInput extends JPanel implements MouseListener, ActionListener {
-    JLabel back;
-    JLabel playerOne, playerTwo, caption = new JLabel("Please Click Set After Writing Player's Name");
+    JLabel back, choice = new JLabel("Select Grid Size: ");
+    JLabel playerOne, playerTwo, caption = new JLabel("Please Click Set or Enter Key After Writing Player's Name");
     JTextField playerOneInput, playerTwoInput;
     JButton set1, set2, edit1, edit2;
     JButton startGame;
@@ -19,7 +19,11 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
     JLabel backButton = new JLabel(backButtonImg);
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
-    static String playerOneName, playerTwoName;
+
+    String [] gridName = {"4x3","5x4","6x6"};
+    JComboBox<String> grid = new JComboBox<>(gridName);
+
+    static String playerOneName = "Player1", playerTwoName = "Player2";
 
     private Font inputFont; //declare a font reference
     private File location = new File("Assets/GethoBold-v0wD.ttf"); //location of the font
@@ -38,6 +42,8 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         back.setForeground(new Color(55, 55, 55));
         back.addMouseListener(this);
 
+        choice.setBounds(850,40,600,100);
+
         backButton.setBounds(30, 18, 25, 25);
         backButton.addMouseListener(this);
 
@@ -45,7 +51,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         playerOne.setBounds(100, 80 , 330, 35);
         playerTwo = new JLabel("Enter Player Two's Name: ");
         playerTwo.setBounds(100, 135 , 330, 35);
-        caption.setBounds(100,200,600,35);
+        caption.setBounds(100,200,800,35);
 
         playerOneInput = new JTextField(35);
         playerOneInput.setBounds(390, 80 , 150, 35);
@@ -65,6 +71,10 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         startGame = new JButton("Start Game");
         startGame.setBounds(490, 300, 200, 50);
 
+        grid.setBounds(850,80,100,100);
+        this.add(grid);
+
+
         try {
             inputFont = Font.createFont(Font.TRUETYPE_FONT, location);
             inputFont = inputFont.deriveFont(22.0f); //set it to preferred size
@@ -77,6 +87,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             edit2.setFont(inputFont);
             edit1.setFont(inputFont);
             back.setFont(inputFont);
+            choice.setFont(inputFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace(); //because it is a must to handle exception when using custom font
         }
@@ -93,6 +104,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         this.add(edit2);
         this.add(backButton);
         this.add(back);
+        this.add(choice);
 
         edit1.setVisible(false);
         edit2.setVisible(false);
@@ -121,6 +133,8 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             if (playerOneInput.getText().isEmpty()) {
                 PlayerInput.playerOneName = "Player 1";
             }
+
+            CardGame.gridSize = grid.getSelectedIndex();
         }
         else if(e.getSource() == set1){
             edit1.setVisible(true);
@@ -208,5 +222,4 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             }
         }
     }
-
 }

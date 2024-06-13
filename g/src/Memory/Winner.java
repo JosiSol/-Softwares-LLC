@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class Winner extends JPanel implements MouseListener {
     JLabel winner, retry, mainMenu;
-    private Timer timer = new Timer(10, e -> {
+    private final Timer timer = new Timer(10, e -> {
        GameMenu.runGame = true;
     });
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -64,6 +64,7 @@ public class Winner extends JPanel implements MouseListener {
             @Override
             public void mouseClicked (MouseEvent e){
             GameMenu.runGame = false;
+            CardGame.stillOn = false;
             System.out.println("Back to square one");
             if (e.getSource() == retry) {
                 GameMenu.runGame = true;

@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public class Card extends JLabel implements MouseListener, ActionListener {
 
     public int pic; // Used to choose the sprite
-    private Timer t = new Timer(400, this); // Timer for animation or delay
+    private final Timer t = new Timer(400, this); // Timer for animation or delay
     private volatile boolean taken = false; // Flag to indicate if the card is taken
     // Make private and add setter method
     public boolean closed = true; // Flag to indicate if the card is face-down or face-up
@@ -60,6 +60,7 @@ public class Card extends JLabel implements MouseListener, ActionListener {
         this.setBounds(100, 100, 100, 100); // Default position and size
     }
 
+    Card(int pic){this.pic = pic;}
     @Override
     public void actionPerformed(ActionEvent e) {
         if (closed) {

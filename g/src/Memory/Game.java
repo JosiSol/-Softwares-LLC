@@ -2,59 +2,62 @@ package Memory;
 
 //main class that will handle the interaction between the game objects/components
 public class Game {
-    
-    public static void main(String[] args)
-    {   
+
+    public static void main(String[] args) {
         CardGame cardGame = new CardGame();
         PlayerInput playerInput = new PlayerInput();
         AboutUs aboutUs = new AboutUs();
         GameMenu gameMenu = new GameMenu();
         CompanyLogo companyLogo = new CompanyLogo();
         GamePanel gamePanel = new GamePanel();
-        //make the user unable to resize until logo finishes loading cuz otherwise it wont be at the center of the screen
+        //make the user unable to resize until logo finishes loading cuz otherwise it won't be at the center of the screen
         gamePanel.setResizable(false);
         gamePanel.getContentPane().add(companyLogo);
         gamePanel.pack();
-        while(companyLogo.getDisplayingLogo()){}//just wasting time till the logo is done displaying
+        while (companyLogo.getDisplayingLogo()) {
+        }//just wasting time till the logo is done displaying
         gamePanel.getContentPane().remove(companyLogo);
-        //nvm just dont let bro change the screen size at all
+        //nvm just don't let bro change the screen size at all
         //gamePanel.setResizable(true);
-        
-        while(true){
 
-            gamePanel.getContentPane().add(gameMenu);// button wont be visible after adding unless we refresh the screen or set the bounds
+        while (true) {
+
+            gamePanel.getContentPane().add(gameMenu);// button won't be visible after adding unless we refresh the screen or set the bounds
             gamePanel.repaint();
             gamePanel.pack();
-            while(!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice){}//waste timer till user makes a choice
+            while (!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice) {
+            }//waste timer till user makes a choice
             gamePanel.getContentPane().remove(gameMenu);
-            if(GameMenu.showAboutUsPage)
-            {
-                // add panel that holds thingys
+            if (GameMenu.showAboutUsPage) {
+                // add panel that holds things
                 gamePanel.getContentPane().add(aboutUs);
                 gamePanel.repaint();
                 gamePanel.pack();
                 System.out.println("right");
-                while(GameMenu.showAboutUsPage){}/*back button wasn't clicked*/
+                while (GameMenu.showAboutUsPage) {
+                }/*back button wasn't clicked*/
                 gamePanel.remove(aboutUs);
-                
-            }
-            else if(GameMenu.playerChoice){
+
+            } else if (GameMenu.playerChoice) {
                 gamePanel.getContentPane().add(playerInput);
                 gamePanel.repaint();
                 gamePanel.pack();
                 System.out.println("cool");
-                while (GameMenu.playerChoice){}
+                while (GameMenu.playerChoice) {}
                 gamePanel.remove(playerInput);
-            }
-            else if(GameMenu.runGame) 
-            {
-                // add panel that holds thingys
+
+
+            } else if (GameMenu.runGame) {
+
+                // add panel that holds things
+                cardGame.start();
                 gamePanel.getContentPane().add(cardGame);
                 gamePanel.repaint();
                 gamePanel.pack();
-                while (GameMenu.runGame){}/*back button wasn't clicked and game didnt end*/
+                while (GameMenu.runGame) {
+                }/*back button wasn't clicked and game didn't end*/
                 gamePanel.remove(cardGame);
-                cardGame = new CardGame();
+                cardGame.restore();
             }
         }
     }
