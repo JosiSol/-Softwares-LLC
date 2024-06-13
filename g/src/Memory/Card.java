@@ -13,21 +13,24 @@ public class Card extends JLabel implements MouseListener, ActionListener {
     public int pic; // Used to choose the sprite
     private final Timer t = new Timer(400, this); // Timer for animation or delay
     private volatile boolean taken = false; // Flag to indicate if the card is taken
-    // Make private and add setter method
     public boolean closed = true; // Flag to indicate if the card is face-down or face-up
 
     {
         t.setRepeats(false); // Set timer to not repeat automatically
         this.setIcon(new ImageIcon("Assets/initial.png")); // Set default icon for the card
-        this.addMouseListener(this); // Add mouse listener to handle mouse events
-        this.setVisible(true); // Make the card visible
+        this.addMouseListener(this);
+        this.setVisible(true);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (closed) {
-            this.setIcon(new ImageIcon("Assets/cgr" + pic + ".gif")); // Set image when card is clicked
-            t.start(); // Start the timer for animation or delay
+        try {
+            if (closed) {
+                this.setIcon(new ImageIcon("Assets/cgr" + pic + ".gif")); // Set image when card is clicked
+                t.start(); // Start the timer for animation or delay
+            }
+        }catch(Exception ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 
