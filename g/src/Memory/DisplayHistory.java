@@ -12,14 +12,20 @@ import java.io.IOException;
 public class DisplayHistory extends JPanel implements MouseListener {
     JTextArea ta;
     String compose = "";
-    JLabel tri;
+    JLabel tri, backButton;
     Toolkit tk = Toolkit.getDefaultToolkit(); // Toolkit for custom cursor
     Image newCur1 = tk.getImage("Assets/cursorMain.png"); // Main cursor image
+    ImageIcon icon = new ImageIcon("Assets/backButton.png");
     private Font backFont, textFont; // Declare a font reference
     private final File location = new File("Assets/GethoBold-v0wD.ttf"); // Location of the font
     private final File location2 = new File("Assets/Ubuntu-Medium.ttf");
 
     {
+
+        backButton = new JLabel(icon);
+        backButton.setBounds(30, 18, 25, 25);
+        backButton.addMouseListener(this);
+
         this.setPreferredSize(new Dimension(1200, 600));
         tri = new JLabel("Back");
 
@@ -57,6 +63,7 @@ public class DisplayHistory extends JPanel implements MouseListener {
 
         tri.setBounds(56, 19, 200, 30);    // Position triangle label
         tri.addMouseListener(this);
+        backButton.addMouseListener(this);
 
         ta = new JTextArea();
         ta.setEditable(false);
@@ -84,6 +91,7 @@ public class DisplayHistory extends JPanel implements MouseListener {
         }
 
         this.add(tri);
+        this.add(backButton);
 
         ta.setText(compose);
         JScrollPane scrollPane = new JScrollPane(ta);
@@ -100,7 +108,7 @@ public class DisplayHistory extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e){
-        if (e.getSource() == tri) {        // If triangle is clicked
+        if (e.getSource() == tri || e.getSource() == backButton) {        // If triangle is clicked
             GameMenu.playerHistory = false;
         }
     }

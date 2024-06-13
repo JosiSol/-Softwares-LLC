@@ -29,6 +29,7 @@ public class GameMenu extends JPanel implements MouseListener {
     JLabel aboutUs = new JLabel("ABOUT US");
     JLabel exit = new JLabel("EXIT");
     JLabel previous = new JLabel("Previous Results");
+    JLabel guide = new JLabel("USER GUIDE");
 
     // JLabel for background image
     JLabel background = new JLabel(img);
@@ -38,6 +39,7 @@ public class GameMenu extends JPanel implements MouseListener {
     public static volatile boolean runGame;
     public static volatile boolean playerChoice;
     public static volatile boolean playerHistory;
+    public static volatile boolean userGuide;
 
     // Font variables
     private Font menuFont; // Declare a font reference
@@ -67,6 +69,7 @@ public class GameMenu extends JPanel implements MouseListener {
         aboutUs.addMouseListener(this);
         exit.addMouseListener(this);
         previous.addMouseListener(this);
+        guide.addMouseListener(this);
 
         // Set bounds for background image
         background.setBounds(0, 0, 1200, 700);
@@ -76,15 +79,18 @@ public class GameMenu extends JPanel implements MouseListener {
         startGame.setForeground(new Color(224, 224, 224));
 
         // Set bounds and foreground color for ABOUT US label
-        aboutUs.setBounds(40, 188, 160, 30);
+        aboutUs.setBounds(40, 258, 160, 30);
         aboutUs.setForeground(new Color(224, 224, 224));
 
         // Set bounds and foreground color for EXIT label
-        exit.setBounds(40, 258, 80, 30);
+        exit.setBounds(40, 326, 80, 30);
         exit.setForeground(new Color(200, 200, 200));
 
         previous.setBounds(40, 520, 300, 30);
         previous.setForeground(new Color(224, 224, 224));
+
+        guide.setBounds(40, 188, 300, 30);
+        guide.setForeground(new Color(224, 224, 224));
 
         try {
             // Load custom font
@@ -93,6 +99,7 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(menuFont);
             startGame.setFont(menuFont);
             exit.setFont(menuFont);
+            guide.setFont(menuFont);
             previous.setFont(menuFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace(); // Handle exception when using custom font
@@ -112,6 +119,7 @@ public class GameMenu extends JPanel implements MouseListener {
         this.add(aboutUs);
         this.add(exit);
         this.add(previous);
+        this.add(guide);
         this.add(background);
 
         // Set components visible
@@ -143,6 +151,9 @@ public class GameMenu extends JPanel implements MouseListener {
         if (e.getSource() == previous) {
             GameMenu.playerHistory = true; // Set flag for player choice
         }
+        if (e.getSource() == guide) {
+            GameMenu.userGuide = true; // Set flag for player choice
+        }
     }
 
     // Mouse press event handler
@@ -159,6 +170,9 @@ public class GameMenu extends JPanel implements MouseListener {
         // Change font size when mouse is pressed on ABOUT US label
         if (e.getSource() == aboutUs)
             aboutUs.setFont(aboutUs.getFont().deriveFont(22.0f));
+
+        if (e.getSource() == guide)
+            guide.setFont(aboutUs.getFont().deriveFont(22.0f));
     }
 
     // Mouse release event handler
@@ -181,6 +195,11 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(aboutUs.getFont().deriveFont(25.0f));
             aboutUs.setForeground(new Color(224, 224, 224));
         }
+
+        if (e.getSource() == guide) {
+            guide.setFont(guide.getFont().deriveFont(25.0f));
+            guide.setForeground(new Color(224, 224, 224));
+        }
     }
 
     // Mouse enter event handler
@@ -200,6 +219,10 @@ public class GameMenu extends JPanel implements MouseListener {
         if (e.getSource() == aboutUs) {
             aboutUs.setForeground(new Color(239, 239, 239));
         }
+
+        if (e.getSource() == guide) {
+            guide.setForeground(new Color(239, 239, 239));
+        }
     }
 
     // Mouse exit event handler
@@ -218,6 +241,10 @@ public class GameMenu extends JPanel implements MouseListener {
         // Change foreground color when mouse exits ABOUT US label
         if (e.getSource() == aboutUs) {
             aboutUs.setForeground(new Color(224, 224, 224));
+        }
+
+        if (e.getSource() == guide) {
+            guide.setForeground(new Color(224, 224, 224));
         }
     }
 }

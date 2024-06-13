@@ -6,6 +6,7 @@ public class Game {
     public static void main(String[] args) {
         CardGame cardGame = new CardGame();    // Create an instance of the CardGame
         PlayerInput playerInput = new PlayerInput(); // Create an instance of PlayerInput
+        UserGuide userGuide = new UserGuide();
         AboutUs aboutUs = new AboutUs();       // Create an instance of AboutUs
         GameMenu gameMenu = new GameMenu();    // Create an instance of GameMenu
         CompanyLogo companyLogo = new CompanyLogo(); // Create an instance of CompanyLogo
@@ -32,7 +33,9 @@ public class Game {
             gamePanel.pack(); // Pack the components within the window
 
             // Wait until the user makes a choice (About Us, Run Game, or Player Choice)
-            while (!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice && !GameMenu.playerHistory) {
+            while (!GameMenu.showAboutUsPage && !GameMenu.runGame &&
+                    !GameMenu.playerChoice &&
+                    !GameMenu.playerHistory && !GameMenu.userGuide) {
             }
 
             gamePanel.getContentPane().remove(gameMenu); // Remove the game menu
@@ -49,6 +52,18 @@ public class Game {
                 }
 
                 gamePanel.remove(aboutUs); // Remove the About Us page
+            }
+            if (GameMenu.userGuide) {
+                gamePanel.getContentPane().add(userGuide); // Add About Us page to game panel
+                gamePanel.repaint(); // Repaint the game panel
+                gamePanel.pack(); // Pack the components within the window
+                System.out.println("right");
+
+                // Wait until the back button is clicked on the About Us page
+                while (GameMenu.userGuide) {
+                }
+
+                gamePanel.remove(userGuide); // Remove the About Us page
             }
             // If the user chooses to input player details
             else if (GameMenu.playerChoice) {
