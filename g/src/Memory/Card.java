@@ -48,18 +48,7 @@ public class Card extends JLabel implements MouseListener, ActionListener {
         this.setIcon(new ImageIcon("Assets/cg" + pic + ".gif")); // Set failure image
         t.start(); // Start the timer for animation or delay
     }
-
-    // Constructor with position and sprite choice
-    Card(int posX, int posY, int pic) {
-        this.setBounds(posX, posY, 50, 66); // Set position and size of the card
-        this.pic = pic; // Assign sprite choice
-    }
-
-    // Default constructor
-    Card() {
-        this.setBounds(100, 100, 100, 100); // Default position and size
-    }
-
+    Card(){}
     Card(int pic){this.pic = pic;}
     @Override
     public void actionPerformed(ActionEvent e) {

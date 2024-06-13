@@ -9,7 +9,7 @@ import javax.swing.*;
 
 // AboutUs class extends JPanel and implements MouseListener
 public class AboutUs extends JPanel implements MouseListener {
-    JLabel backButton, background, tri, label1, label2;
+    JLabel backButton, background, tri;
     ImageIcon icon = new ImageIcon("Assets/backButton.png");
     ImageIcon icon2 = new ImageIcon("Assets/Background.png");
     Toolkit tk = Toolkit.getDefaultToolkit();

@@ -2,10 +2,7 @@ package Memory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -26,7 +23,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
     static String playerOneName = "Player1", playerTwoName = "Player2";
 
     private Font inputFont; //declare a font reference
-    private File location = new File("Assets/GethoBold-v0wD.ttf"); //location of the font
+    private final File location = new File("Assets/GethoBold-v0wD.ttf"); //location of the font
     
     {
         this.setLayout(null);
@@ -74,7 +71,6 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         grid.setBounds(850,80,100,100);
         this.add(grid);
 
-
         try {
             inputFont = Font.createFont(Font.TRUETYPE_FONT, location);
             inputFont = inputFont.deriveFont(22.0f); //set it to preferred size
@@ -118,6 +114,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         backButton.addMouseListener(this);
         playerOneInput.addActionListener(this);
         playerTwoInput.addActionListener(this);
+
 
         this.setVisible(true);
     }
