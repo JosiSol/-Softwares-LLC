@@ -68,7 +68,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         startGame = new JButton("Start Game");
         startGame.setBounds(490, 300, 200, 50);
 
-        grid.setBounds(850,80,100,100);
+        grid.setBounds(850,100,100,30);
         this.add(grid);
 
         try {
