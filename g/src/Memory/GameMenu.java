@@ -28,6 +28,7 @@ public class GameMenu extends JPanel implements MouseListener {
     JLabel startGame = new JLabel("START");
     JLabel aboutUs = new JLabel("ABOUT US");
     JLabel exit = new JLabel("EXIT");
+    JLabel previous = new JLabel("Previous Results");
 
     // JLabel for background image
     JLabel background = new JLabel(img);
@@ -36,6 +37,7 @@ public class GameMenu extends JPanel implements MouseListener {
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
     public static volatile boolean playerChoice;
+    public static volatile boolean playerHistory;
 
     // Font variables
     private Font menuFont; // Declare a font reference
@@ -64,6 +66,7 @@ public class GameMenu extends JPanel implements MouseListener {
         startGame.addMouseListener(this);
         aboutUs.addMouseListener(this);
         exit.addMouseListener(this);
+        previous.addMouseListener(this);
 
         // Set bounds for background image
         background.setBounds(0, 0, 1200, 700);
@@ -80,6 +83,9 @@ public class GameMenu extends JPanel implements MouseListener {
         exit.setBounds(40, 258, 80, 30);
         exit.setForeground(new Color(200, 200, 200));
 
+        previous.setBounds(40, 520, 300, 30);
+        previous.setForeground(new Color(224, 224, 224));
+
         try {
             // Load custom font
             menuFont = Font.createFont(Font.TRUETYPE_FONT, location);
@@ -87,6 +93,16 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(menuFont);
             startGame.setFont(menuFont);
             exit.setFont(menuFont);
+            previous.setFont(menuFont);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace(); // Handle exception when using custom font
+        }
+
+        try {
+            // Load custom font
+            menuFont = Font.createFont(Font.TRUETYPE_FONT, location);
+            menuFont = menuFont.deriveFont(18.0f); // Set it to preferred size
+            previous.setFont(menuFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace(); // Handle exception when using custom font
         }
@@ -95,12 +111,14 @@ public class GameMenu extends JPanel implements MouseListener {
         this.add(startGame);
         this.add(aboutUs);
         this.add(exit);
+        this.add(previous);
         this.add(background);
 
         // Set components visible
         startGame.setVisible(true);
         exit.setVisible(true);
         aboutUs.setVisible(true);
+        previous.setVisible(true);
         background.setVisible(true);
     }
 
@@ -121,6 +139,9 @@ public class GameMenu extends JPanel implements MouseListener {
         // Handle clicks on START label
         if (e.getSource() == startGame) {
             GameMenu.playerChoice = true; // Set flag for player choice
+        }
+        if (e.getSource() == previous) {
+            GameMenu.playerHistory = true; // Set flag for player choice
         }
     }
 

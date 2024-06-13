@@ -28,6 +28,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
     Player p1;                            // Player 1
     Player p2;                            // Player 2
     JPanel gridPanel;                     // Panel for the grid of cards
+    //History h = new History();
 
     static volatile boolean stillOn = true;   // Game status flag
     private final JLabel tri, playerTurn;     // Triangle and player turn label
@@ -41,6 +42,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
             this.add(new Winner(p1.getScore() - p2.getScore())); // Add winner component
 
             stillOn = true;                // Reset game status
+            History.writeFile();
             this.restore();                // Restore initial game state
         }
     });
@@ -199,8 +201,10 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
                     System.out.println("player " + Player.Turn + "up by a point");
                     if (Player.Turn == Player.Choice.FIRST) {
                         score[0].setText(String.valueOf(p1.oneUp())); // Update Player 1 score
+                        History.storage1 = score[0].getText();
                     } else {
                         score[2].setText(String.valueOf(p2.oneUp())); // Update Player 2 score
+                        History.storage2 = score[2].getText();
                     }
                     Player.choices[0].taken(); // Mark cards as taken
                     Player.choices[1].taken();

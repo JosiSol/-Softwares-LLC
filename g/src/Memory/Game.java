@@ -32,7 +32,7 @@ public class Game {
             gamePanel.pack(); // Pack the components within the window
 
             // Wait until the user makes a choice (About Us, Run Game, or Player Choice)
-            while (!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice) {
+            while (!GameMenu.showAboutUsPage && !GameMenu.runGame && !GameMenu.playerChoice && !GameMenu.playerHistory) {
             }
 
             gamePanel.getContentPane().remove(gameMenu); // Remove the game menu
@@ -62,6 +62,18 @@ public class Game {
                 }
 
                 gamePanel.remove(playerInput); // Remove the Player Input page
+            }
+            else if (GameMenu.playerHistory) {
+                DisplayHistory newDisplay = new DisplayHistory(); //create an object every time we want to see the history
+                gamePanel.getContentPane().add(newDisplay); //add it to the pane
+                gamePanel.repaint(); // Repaint the game panel
+                gamePanel.pack(); // Pack the components within the window
+
+                // Wait until the back button is clicked or the game ends
+                while (GameMenu.playerHistory) {
+                }
+
+                gamePanel.remove(newDisplay); // Remove the display
             }
             // If the user chooses to start the game
             else if (GameMenu.runGame) {
