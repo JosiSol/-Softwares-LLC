@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PlayerInput extends JPanel implements MouseListener, ActionListener {
     JLabel back;
-    JLabel playerOne, playerTwo;
+    JLabel playerOne, playerTwo, caption = new JLabel("Please Click Set After Writing Player's Name");
     JTextField playerOneInput, playerTwoInput;
     JButton set1, set2, edit1, edit2;
     JButton startGame;
@@ -45,6 +45,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
         playerOne.setBounds(100, 80 , 330, 35);
         playerTwo = new JLabel("Enter Player Two's Name: ");
         playerTwo.setBounds(100, 135 , 330, 35);
+        caption.setBounds(100,200,600,35);
 
         playerOneInput = new JTextField(35);
         playerOneInput.setBounds(390, 80 , 150, 35);
@@ -69,6 +70,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             inputFont = inputFont.deriveFont(22.0f); //set it to preferred size
             playerOne.setFont(inputFont);
             playerTwo.setFont(inputFont);
+            caption.setFont(inputFont);
             startGame.setFont(inputFont);
             set1.setFont(inputFont);
             set2.setFont(inputFont);
@@ -81,6 +83,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
 
         this.add(playerOne);
         this.add(playerTwo);
+        this.add(caption);
         this.add(playerOneInput);
         this.add(playerTwoInput);
         this.add(set1);
