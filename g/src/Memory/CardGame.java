@@ -50,7 +50,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
     ImageIcon backButtonImg = new ImageIcon("Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
-    Card[] cardArr = new Card[36];
+    Card[] cardArr = new Card[50];
     Toolkit tk = Toolkit.getDefaultToolkit(); // Toolkit for custom cursor
     Image newCur1 = tk.getImage("Assets/cursorMain.png"); // Main cursor image
     Image turnCur = tk.getImage("Assets/curvedArrow.png"); // Turn cursor image
@@ -134,7 +134,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
         possibleNum = new Integer[nc[CardGame.gridSize]]; // Array to store card values
 
         while (uniqueNumbers.size() < nc[CardGame.gridSize] / 2) {
-            int randomNumber = rnd.nextInt(35) + 1;
+            int randomNumber = rnd.nextInt(50) + 1;
             uniqueNumbers.add(randomNumber); // Add unique random numbers
         }
 
