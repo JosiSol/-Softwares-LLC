@@ -73,7 +73,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
 
         try {
             inputFont = Font.createFont(Font.TRUETYPE_FONT, location);
-            inputFont = inputFont.deriveFont(22.0f); //set it to preferred size
+            inputFont = inputFont.deriveFont(22.0f); // Set it to preferred size
             playerOne.setFont(inputFont);
             playerTwo.setFont(inputFont);
             caption.setFont(inputFont);
@@ -85,7 +85,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             back.setFont(inputFont);
             choice.setFont(inputFont);
         } catch (FontFormatException | IOException e) {
-            e.printStackTrace(); //because it is a must to handle exception when using custom font
+            e.printStackTrace(); // Handle exception when loading custom font
         }
 
         this.add(playerOne);
@@ -183,11 +183,9 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
     @Override
     public void mouseEntered(MouseEvent e){
         if (e.getSource() == back) {
-            //tri.setFont(tri.getFont().deriveFont(30.0f));
             back.setForeground(new Color(75, 75, 75));
         }
         if (e.getSource() == backButton) {
-            //tri.setFont(tri.getFont().deriveFont(30.0f));
             back.setForeground(new Color(75, 75, 75));
         }
     }

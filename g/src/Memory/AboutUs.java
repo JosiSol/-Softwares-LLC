@@ -24,11 +24,9 @@ public class AboutUs extends JPanel implements MouseListener {
         Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
         this.setCursor(mainCursor);
 
-        // Set the preferred size of the panel
         this.setPreferredSize(new Dimension(1200, 600));
         this.setVisible(true);
 
-        // Initialize and configure backButton
         backButton = new JLabel(icon);
         backButton.setBounds(30, 18, 25, 25);
         backButton.addMouseListener(this);
@@ -45,27 +43,21 @@ public class AboutUs extends JPanel implements MouseListener {
             e.printStackTrace();
         }
 
-        // Set bounds and add mouse listener to tri
         tri.setBounds(56, 19, 200, 30);
         tri.addMouseListener(this);
 
-        // Initialize and configure background label
         background = new JLabel(icon2);
         background.setBounds(250, 0, 1000, 600);
 
-        // Add backButton and tri to the panel
         this.add(backButton);
         this.add(tri);
 
-        // Create and configure text area
         JTextArea textArea = new JTextArea(25, 25);
         textArea.setBounds(310, 50, 850, 460);
 
-        // Create and configure a label for the title
         JLabel label = new JLabel("QIBE Games Present, The Memory Game");
         label.setBounds(480, 19, 600, 30);
 
-        // Set the text for textArea
         textArea.setText(
                 label.getText() +
                         "\n\n About Us \n\n" +
@@ -108,7 +100,6 @@ public class AboutUs extends JPanel implements MouseListener {
         scrollPane.setBorder(null);
         scrollPane.setOpaque(false);
 
-        // Add the scroll pane and background to the panel
         this.add(scrollPane);
         this.add(background);
     }
@@ -123,25 +114,15 @@ public class AboutUs extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        // Not used, but required by MouseListener interface
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // Not used, but required by MouseListener interface
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // Not used, but required by MouseListener interface
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        // Not used, but required by MouseListener interface
-    }
-
-    // Constructor for AboutUs
+    public void mouseExited(MouseEvent e) {}
     public AboutUs() {}
 }

@@ -28,11 +28,7 @@ public class GameMenu extends JPanel implements MouseListener {
     JLabel startGame = new JLabel("START");
     JLabel aboutUs = new JLabel("ABOUT US");
     JLabel exit = new JLabel("EXIT");
-
-    // JLabel for background image
     JLabel background = new JLabel(img);
-
-    // Static volatile variables for game state
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
     public static volatile boolean playerChoice;
@@ -44,39 +40,29 @@ public class GameMenu extends JPanel implements MouseListener {
     // Toolkit for custom cursor
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
-
-    // Constructor
     public GameMenu() {
         // Initialize state variables
         GameMenu.showAboutUsPage = false;
-
-        // Set layout to null for manual positioning
         this.setLayout(null);
 
         // Create custom cursor
         Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
         this.setCursor(mainCursor);
 
-        // Set preferred size of the panel
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        // Add mouse listeners to menu options
         startGame.addMouseListener(this);
         aboutUs.addMouseListener(this);
         exit.addMouseListener(this);
 
-        // Set bounds for background image
         background.setBounds(0, 0, 1200, 700);
 
-        // Set bounds and foreground color for START label
         startGame.setBounds(40, 120, 100, 30);
         startGame.setForeground(new Color(224, 224, 224));
 
-        // Set bounds and foreground color for ABOUT US label
         aboutUs.setBounds(40, 188, 160, 30);
         aboutUs.setForeground(new Color(224, 224, 224));
 
-        // Set bounds and foreground color for EXIT label
         exit.setBounds(40, 258, 80, 30);
         exit.setForeground(new Color(200, 200, 200));
 
@@ -91,20 +77,17 @@ public class GameMenu extends JPanel implements MouseListener {
             e.printStackTrace(); // Handle exception when using custom font
         }
 
-        // Add components to panel
         this.add(startGame);
         this.add(aboutUs);
         this.add(exit);
         this.add(background);
 
-        // Set components visible
         startGame.setVisible(true);
         exit.setVisible(true);
         aboutUs.setVisible(true);
         background.setVisible(true);
     }
 
-    // Mouse click event handler
     @Override
     public void mouseClicked(MouseEvent e) {
         // Handle clicks on EXIT label
@@ -124,7 +107,6 @@ public class GameMenu extends JPanel implements MouseListener {
         }
     }
 
-    // Mouse press event handler
     @Override
     public void mousePressed(MouseEvent e) {
         // Change font size when mouse is pressed on START label
@@ -140,7 +122,6 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(aboutUs.getFont().deriveFont(22.0f));
     }
 
-    // Mouse release event handler
     @Override
     public void mouseReleased(MouseEvent e) {
         // Reset font size and color when mouse is released from START label
@@ -162,7 +143,6 @@ public class GameMenu extends JPanel implements MouseListener {
         }
     }
 
-    // Mouse enter event handler
     @Override
     public void mouseEntered(MouseEvent e) {
         // Change foreground color when mouse enters START label
@@ -181,7 +161,6 @@ public class GameMenu extends JPanel implements MouseListener {
         }
     }
 
-    // Mouse exit event handler
     @Override
     public void mouseExited(MouseEvent e) {
         // Change foreground color when mouse exits START label
