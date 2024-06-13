@@ -28,7 +28,12 @@ public class GameMenu extends JPanel implements MouseListener {
     JLabel startGame = new JLabel("START");
     JLabel aboutUs = new JLabel("ABOUT US");
     JLabel exit = new JLabel("EXIT");
+    JLabel previous = new JLabel("Previous Results");
+
+    // JLabel for background image
     JLabel background = new JLabel(img);
+
+    // Static volatile variables for game state
     public static volatile boolean showAboutUsPage;
     public static volatile boolean runGame;
     public static volatile boolean playerChoice;
@@ -41,31 +46,45 @@ public class GameMenu extends JPanel implements MouseListener {
     // Toolkit for custom cursor
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
+
+    // Constructor
     public GameMenu() {
         // Initialize state variables
         GameMenu.showAboutUsPage = false;
+
+        // Set layout to null for manual positioning
         this.setLayout(null);
 
         // Create custom cursor
         Cursor mainCursor = tk.createCustomCursor(newCur1, getLocation(), TOOL_TIP_TEXT_KEY);
         this.setCursor(mainCursor);
 
+        // Set preferred size of the panel
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
+        // Add mouse listeners to menu options
         startGame.addMouseListener(this);
         aboutUs.addMouseListener(this);
         exit.addMouseListener(this);
+        previous.addMouseListener(this);
 
+        // Set bounds for background image
         background.setBounds(0, 0, 1200, 700);
 
+        // Set bounds and foreground color for START label
         startGame.setBounds(40, 120, 100, 30);
         startGame.setForeground(new Color(224, 224, 224));
 
+        // Set bounds and foreground color for ABOUT US label
         aboutUs.setBounds(40, 188, 160, 30);
         aboutUs.setForeground(new Color(224, 224, 224));
 
+        // Set bounds and foreground color for EXIT label
         exit.setBounds(40, 258, 80, 30);
         exit.setForeground(new Color(200, 200, 200));
+
+        previous.setBounds(40, 520, 300, 30);
+        previous.setForeground(new Color(224, 224, 224));
 
         try {
             // Load custom font
@@ -74,44 +93,59 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(menuFont);
             startGame.setFont(menuFont);
             exit.setFont(menuFont);
+            previous.setFont(menuFont);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace(); // Handle exception when using custom font
         }
 
+        try {
+            // Load custom font
+            menuFont = Font.createFont(Font.TRUETYPE_FONT, location);
+            menuFont = menuFont.deriveFont(18.0f); // Set it to preferred size
+            previous.setFont(menuFont);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace(); // Handle exception when using custom font
+        }
+
+        // Add components to panel
         this.add(startGame);
         this.add(aboutUs);
         this.add(exit);
+        this.add(previous);
         this.add(background);
 
+        // Set components visible
         startGame.setVisible(true);
         exit.setVisible(true);
         aboutUs.setVisible(true);
+        previous.setVisible(true);
         background.setVisible(true);
     }
 
+    // Mouse click event handler
     @Override
     public void mouseClicked(MouseEvent e) {
-        try {
-            // Handle clicks on EXIT label
-            if (e.getSource() == exit) {
-                // Show confirmation dialog
-                if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit game", JOptionPane.YES_NO_OPTION) == 0) {
-                    System.exit(0); // Exit the game on confirmation
-                }
+        // Handle clicks on EXIT label
+        if (e.getSource() == exit) {
+            // Show confirmation dialog
+            if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit game", JOptionPane.YES_NO_OPTION) == 0) {
+                System.exit(0); // Exit the game on confirmation
             }
-            // Handle clicks on ABOUT US label
-            if (e.getSource() == aboutUs) {
-                GameMenu.showAboutUsPage = true; // Set flag to show about us page
-            }
-            // Handle clicks on START label
-            if (e.getSource() == startGame) {
-                GameMenu.playerChoice = true; // Set flag for player choice
-            }
-        }catch(RuntimeException ex){
-            System.out.println("Mouse Pixel Click Error!");
+        }
+        // Handle clicks on ABOUT US label
+        if (e.getSource() == aboutUs) {
+            GameMenu.showAboutUsPage = true; // Set flag to show about us page
+        }
+        // Handle clicks on START label
+        if (e.getSource() == startGame) {
+            GameMenu.playerChoice = true; // Set flag for player choice
+        }
+        if (e.getSource() == previous) {
+            GameMenu.playerHistory = true; // Set flag for player choice
         }
     }
 
+    // Mouse press event handler
     @Override
     public void mousePressed(MouseEvent e) {
         // Change font size when mouse is pressed on START label
@@ -127,6 +161,7 @@ public class GameMenu extends JPanel implements MouseListener {
             aboutUs.setFont(aboutUs.getFont().deriveFont(22.0f));
     }
 
+    // Mouse release event handler
     @Override
     public void mouseReleased(MouseEvent e) {
         // Reset font size and color when mouse is released from START label
@@ -148,6 +183,7 @@ public class GameMenu extends JPanel implements MouseListener {
         }
     }
 
+    // Mouse enter event handler
     @Override
     public void mouseEntered(MouseEvent e) {
         // Change foreground color when mouse enters START label
@@ -166,6 +202,7 @@ public class GameMenu extends JPanel implements MouseListener {
         }
     }
 
+    // Mouse exit event handler
     @Override
     public void mouseExited(MouseEvent e) {
         // Change foreground color when mouse exits START label
