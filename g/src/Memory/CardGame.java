@@ -110,7 +110,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
         gridPanel.setBounds(600, 20, 350, 520); // Position grid panel
 
         playerTurn = new JLabel(PlayerInput.playerOneName); // Initialize player turn label
-        playerTurn.setBounds(300, 40, 100, 25);
+        playerTurn.setBounds(300, 40, 350, 25);
         playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
         playerTurn.setForeground(Color.RED); // Set player turn color
 
