@@ -19,7 +19,6 @@ import java.util.Set;
 
 //Add a function that resets all the cards and scores when the triangle is clicked
 public class CardGame extends JPanel implements MouseListener,ActionListener {
-    Set<Integer> uniqueNumbers = new HashSet<>();
     static volatile public int gridSize;
     private final int [] row = {4,5,6},
             col = {3,4,6},
@@ -115,13 +114,7 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
         playerTurn.setForeground(Color.RED);
 
-
-
-
         gridPanel.setOpaque(false);
-
-
-
     }
     public void start(){
 
@@ -140,10 +133,11 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         this.add(gridPanel);
         this.add(background);
 
+        Set<Integer> uniqueNumbers = new HashSet<>();
         possibleNum = new Integer[nc[CardGame.gridSize]];
 
         while (uniqueNumbers.size() < nc[CardGame.gridSize]/2) {
-            int randomNumber = rnd.nextInt(18) + 1;
+            int randomNumber = rnd.nextInt(35) + 1;
             uniqueNumbers.add(randomNumber);
         }
 
@@ -156,15 +150,12 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
 
             indArr += 2;
         }
-        System.out.println("not cool");
         Arrays.sort(possibleNum, (a, b) -> rnd.nextInt() - rnd.nextInt());
 
-        System.out.println("not cool");
         for (int i = 0; i < nc[CardGame.gridSize]; i++) {
             System.out.println(i);
             cardArr[i] = new Card(possibleNum[i]);
         }
-        System.out.println("not cool");
         gridPanel.setLayout(new GridLayout(row[CardGame.gridSize], col[CardGame.gridSize], hl[CardGame.gridSize], vl[CardGame.gridSize]));
 
         for (int i = 0; i < nc[CardGame.gridSize]; i++) {
@@ -300,6 +291,5 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         p1.resetScore();
         p2.resetScore();
         end.setRepeats(false);
-
     }
 }

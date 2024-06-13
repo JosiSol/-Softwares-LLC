@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class PlayerInput extends JPanel implements MouseListener, ActionListener {
-    JLabel back, choice = new JLabel("Select Grid Size: ");
+    JLabel back, choice = new JLabel("Select Difficulty: ");
     JLabel playerOne, playerTwo, caption = new JLabel("Please Click Set or Enter Key After Writing Player's Name");
     JTextField playerOneInput, playerTwoInput;
     JButton set1, set2, edit1, edit2;
@@ -20,7 +20,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
     Toolkit tk = Toolkit.getDefaultToolkit();
     Image newCur1 = tk.getImage("Assets/cursorMain.png");
 
-    String [] gridName = {"4x3","5x4","6x6"};
+    String [] gridName = {"Easy","Medium","Hard"};
     JComboBox<String> grid = new JComboBox<>(gridName);
 
     static String playerOneName = "Player1", playerTwoName = "Player2";
