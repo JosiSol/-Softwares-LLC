@@ -1,16 +1,10 @@
 package Memory;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,6 +19,7 @@ import javax.swing.Timer;
 public class CardGame extends JPanel implements MouseListener,ActionListener {
     Player p1;
     Player p2;
+    JPanel gridPanel;
     private JLabel tri, playerTurn;
     private final Integer[] possibleNum = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
     private Random rnd = new Random();
@@ -99,27 +94,17 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         Arrays.sort(possibleNum, (a, b) -> rnd.nextInt() - rnd.nextInt());
         for (int i = 0; i < 12; i++) {
             cardArr[i] = new Card(600, 20, possibleNum[i]);
-            if (i == 1 || i == 2) {
-                cardArr[i] = new Card(600 + (i * 140), 20, possibleNum[i]);
-            }
-            if (i == 3 || i == 6 || i == 9) {
-                cardArr[i] = new Card(600, 20 + (i * 50), possibleNum[i]);
-            }
-            if (i == 4 || i == 5) {
-                cardArr[i] = new Card(600 + ((i - 3) * 140), 20 + (3 * 50), possibleNum[i]);
-            }
-            if (i == 7 || i == 8) {
-                cardArr[i] = new Card(600 + ((i - 6) * 140), 20 + (6 * 50), possibleNum[i]);
-            }
-            if (i == 10 || i == 11) {
-                cardArr[i] = new Card(600 + ((i - 9) * 140), 20 + (9 * 50), possibleNum[i]);
-            }
         }
+
+        gridPanel = new JPanel();
+        gridPanel.setLayout(new GridLayout(4, 3, 100, 70));
 
         for (int i = 0; i < 12; i++) {
             cardArr[i].addMouseListener(this);
             cardArr[i].setCursor(curvedArrow);
         }
+
+        gridPanel.setBounds(600, 20, 350, 520);
 
         playerTurn = new JLabel(PlayerInput.playerOneName);
         playerTurn.setBounds(300, 40, 100, 25);
@@ -131,8 +116,12 @@ public class CardGame extends JPanel implements MouseListener,ActionListener {
         this.add(playerTurn);
 
         for (int i = 0; i < 12; i++) {
-            this.add(cardArr[i]);
+            gridPanel.add(cardArr[i]);
         }
+
+        gridPanel.setOpaque(false);
+
+        this.add(gridPanel);
         this.add(background);
 
     }
