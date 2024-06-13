@@ -9,10 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -50,7 +47,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
     ImageIcon backButtonImg = new ImageIcon("Assets/backButton.png");
     JLabel background = new JLabel(backgroundImg);
     JLabel backButton = new JLabel(backButtonImg);
-    Card[] cardArr = new Card[50];
+    Card[] cardArr = new Card[49];
     Toolkit tk = Toolkit.getDefaultToolkit(); // Toolkit for custom cursor
     Image newCur1 = tk.getImage("Assets/cursorMain.png"); // Main cursor image
     Image turnCur = tk.getImage("Assets/curvedArrow.png"); // Turn cursor image
@@ -106,7 +103,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
         gridPanel.setBounds(600, 20, 350, 520);
 
         playerTurn = new JLabel(PlayerInput.playerOneName);
-        playerTurn.setBounds(300, 40, 100, 25);
+        playerTurn.setBounds(300, 40, 150, 25);
         playerTurn.setFont(new Font("Arial", Font.BOLD, 20));
         playerTurn.setForeground(Color.RED);
 
@@ -134,7 +131,7 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
         possibleNum = new Integer[nc[CardGame.gridSize]]; // Array to store card values
 
         while (uniqueNumbers.size() < nc[CardGame.gridSize] / 2) {
-            int randomNumber = rnd.nextInt(50) + 1;
+            int randomNumber = rnd.nextInt(49) + 1;
             uniqueNumbers.add(randomNumber); // Add unique random numbers
         }
 
@@ -166,46 +163,50 @@ public class CardGame extends JPanel implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == tri) {
-            GameMenu.runGame = false;
-        }
-        if (e.getSource() == backButton) {
-            GameMenu.runGame = false;
-        } else if ((Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])) && (!(((Card) e.getSource()).getTaken()))) {
-            if (Player.choiceNum == Player.Choice.FIRST) {
-                Player.choiceNum = Player.Choice.SECOND;
-                Player.choices[0] = (Card) e.getSource();
-            } else {
-                Player.choiceNum = Player.Choice.FIRST;
-                Player.choices[1] = (Card) e.getSource();
-
-                // Check if the two selected cards match
-                if (Player.choices[0].pic != Player.choices[1].pic) {
-                    t.start(); // Start timer for delay
-
-                    if (Player.Turn == Player.Choice.FIRST) {
-                        Player.Turn = Player.Choice.SECOND;
-                        playerTurn.setText(PlayerInput.playerTwoName);
-                        playerTurn.setForeground(Color.BLUE); // Change player turn
-                    } else {
-                        Player.Turn = Player.Choice.FIRST;
-                        playerTurn.setText(PlayerInput.playerOneName);
-                        playerTurn.setForeground(Color.RED); // Change player turn
-                    }
-                } else {
-                    System.out.println("player " + Player.Turn + "up by a point");
-                    if (Player.Turn == Player.Choice.FIRST) {
-                        score[0].setText(String.valueOf(p1.oneUp())); // Update Player 1 score
-                    } else {
-                        score[2].setText(String.valueOf(p2.oneUp())); // Update Player 2 score
-                    }
-                    Player.choices[0].taken(); // Mark cards as taken
-                    Player.choices[1].taken();
-
-                    end.start(); // Start end game timer
-                }
+        try {
+            if (e.getSource() == tri) {
+                GameMenu.runGame = false;
             }
-            System.out.println("its player" + Player.Turn + "'s turn");
+            if (e.getSource() == backButton) {
+                GameMenu.runGame = false;
+            } else if ((Player.choiceNum == Player.Choice.FIRST || (Player.choiceNum == Player.Choice.SECOND && e.getSource() != Player.choices[0])) && (!(((Card) e.getSource()).getTaken()))) {
+                if (Player.choiceNum == Player.Choice.FIRST) {
+                    Player.choiceNum = Player.Choice.SECOND;
+                    Player.choices[0] = (Card) e.getSource();
+                } else {
+                    Player.choiceNum = Player.Choice.FIRST;
+                    Player.choices[1] = (Card) e.getSource();
+
+                    // Check if the two selected cards match
+                    if (Player.choices[0].pic != Player.choices[1].pic) {
+                        t.start(); // Start timer for delay
+
+                        if (Player.Turn == Player.Choice.FIRST) {
+                            Player.Turn = Player.Choice.SECOND;
+                            playerTurn.setText(PlayerInput.playerTwoName);
+                            playerTurn.setForeground(Color.BLUE); // Change player turn
+                        } else {
+                            Player.Turn = Player.Choice.FIRST;
+                            playerTurn.setText(PlayerInput.playerOneName);
+                            playerTurn.setForeground(Color.RED); // Change player turn
+                        }
+                    } else {
+                        System.out.println("player " + Player.Turn + "up by a point");
+                        if (Player.Turn == Player.Choice.FIRST) {
+                            score[0].setText(String.valueOf(p1.oneUp())); // Update Player 1 score
+                        } else {
+                            score[2].setText(String.valueOf(p2.oneUp())); // Update Player 2 score
+                        }
+                        Player.choices[0].taken(); // Mark cards as taken
+                        Player.choices[1].taken();
+
+                        end.start(); // Start end game timer
+                    }
+                }
+                System.out.println("its player" + Player.Turn + "'s turn");
+            }
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "Mouse Pixel Click Error!");
         }
     }
 

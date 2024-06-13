@@ -24,9 +24,13 @@ public class Card extends JLabel implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (closed) {
-            this.setIcon(new ImageIcon("Assets/cgr" + pic + ".gif")); // Set image when card is clicked
-            t.start(); // Start the timer for animation or delay
+        try {
+            if (closed) {
+                this.setIcon(new ImageIcon("Assets/cgr" + pic + ".gif")); // Set image when card is clicked
+                t.start(); // Start the timer for animation or delay
+            }
+        }catch(Exception ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 

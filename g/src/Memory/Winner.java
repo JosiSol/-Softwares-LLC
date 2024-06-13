@@ -76,12 +76,16 @@ public class Winner extends JPanel implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        GameMenu.runGame = false; // Set game state to not running
-        CardGame.stillOn = false; // Set card game state to not on
+        try {
+            GameMenu.runGame = false; // Set game state to not running
+            CardGame.stillOn = false; // Set card game state to not on
 
-        // Handle click on retry button
-        if (e.getSource() == retry) {
-            GameMenu.runGame = true; // Set game state to running
+            // Handle click on retry button
+            if (e.getSource() == retry) {
+                GameMenu.runGame = true; // Set game state to running
+            }
+        }catch(Exception ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 

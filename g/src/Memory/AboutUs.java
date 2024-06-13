@@ -106,10 +106,14 @@ public class AboutUs extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // Handle mouse click events on backButton or tri
-        if (e.getSource() == backButton || e.getSource() == tri) {
-            GameMenu.showAboutUsPage = false;
-            System.out.println("Back to square one");
+        try {
+            // Handle mouse click events on backButton or tri
+            if (e.getSource() == backButton || e.getSource() == tri) {
+                GameMenu.showAboutUsPage = false;
+                System.out.println("Back to square one");
+            }
+        }catch (Exception ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 

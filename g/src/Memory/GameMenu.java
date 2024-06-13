@@ -90,20 +90,24 @@ public class GameMenu extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // Handle clicks on EXIT label
-        if (e.getSource() == exit) {
-            // Show confirmation dialog
-            if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit game", JOptionPane.YES_NO_OPTION) == 0) {
-                System.exit(0); // Exit the game on confirmation
+        try {
+            // Handle clicks on EXIT label
+            if (e.getSource() == exit) {
+                // Show confirmation dialog
+                if (JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit game", JOptionPane.YES_NO_OPTION) == 0) {
+                    System.exit(0); // Exit the game on confirmation
+                }
             }
-        }
-        // Handle clicks on ABOUT US label
-        if (e.getSource() == aboutUs) {
-            GameMenu.showAboutUsPage = true; // Set flag to show about us page
-        }
-        // Handle clicks on START label
-        if (e.getSource() == startGame) {
-            GameMenu.playerChoice = true; // Set flag for player choice
+            // Handle clicks on ABOUT US label
+            if (e.getSource() == aboutUs) {
+                GameMenu.showAboutUsPage = true; // Set flag to show about us page
+            }
+            // Handle clicks on START label
+            if (e.getSource() == startGame) {
+                GameMenu.playerChoice = true; // Set flag for player choice
+            }
+        }catch(RuntimeException ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 

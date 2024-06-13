@@ -120,43 +120,42 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
     }
 
     @Override
-    public void mouseClicked(MouseEvent e){
-        if(e.getSource() == startGame){
-            GameMenu.playerChoice = false;
-            GameMenu.runGame = true;
-            if (playerTwoInput.getText().isEmpty()) {
-                PlayerInput.playerTwoName = "Player 2";
-            }
-            if (playerOneInput.getText().isEmpty()) {
-                PlayerInput.playerOneName = "Player 1";
-            }
+    public void mouseClicked(MouseEvent e) {
+        try {
+            if (e.getSource() == startGame) {
+                GameMenu.playerChoice = false;
+                GameMenu.runGame = true;
+                if (playerTwoInput.getText().isEmpty()) {
+                    PlayerInput.playerTwoName = "Player Two";
+                }
+                if (playerOneInput.getText().isEmpty()) {
+                    PlayerInput.playerOneName = "Player One";
+                }
 
-            CardGame.gridSize = grid.getSelectedIndex();
-        }
-        else if(e.getSource() == set1){
-            edit1.setVisible(true);
-            playerOneInput.setEditable(false);
-            playerOneName = playerOneInput.getText();
-            if (PlayerInput.playerOneName.isEmpty()) {
-                PlayerInput.playerOneName = "Player 1";
+                CardGame.gridSize = grid.getSelectedIndex();
+            } else if (e.getSource() == set1) {
+                edit1.setVisible(true);
+                playerOneInput.setEditable(false);
+                playerOneName = playerOneInput.getText();
+                if (PlayerInput.playerOneName.isEmpty()) {
+                    PlayerInput.playerOneName = "Player One";
+                }
+            } else if (e.getSource() == set2) {
+                edit2.setVisible(true);
+                playerTwoInput.setEditable(false);
+                playerTwoName = playerTwoInput.getText();
+                if (PlayerInput.playerTwoName.isEmpty()) {
+                    PlayerInput.playerTwoName = "Player Two";
+                }
+            } else if (e.getSource() == edit1) {
+                playerOneInput.setEditable(true);
+            } else if (e.getSource() == edit2) {
+                playerTwoInput.setEditable(true);
+            } else if (e.getSource() == back || e.getSource() == backButton) {
+                GameMenu.playerChoice = false;
             }
-        }
-        else if(e.getSource() == set2){
-            edit2.setVisible(true);
-            playerTwoInput.setEditable(false);
-            playerTwoName = playerTwoInput.getText();
-            if (PlayerInput.playerTwoName.isEmpty()) {
-                PlayerInput.playerTwoName = "Player 2";
-            }
-        }
-        else if(e.getSource() == edit1){
-            playerOneInput.setEditable(true);
-        }
-        else if(e.getSource() == edit2){
-            playerTwoInput.setEditable(true);
-        }
-        else if(e.getSource() == back || e.getSource() == backButton){
-            GameMenu.playerChoice = false;
+        }catch(RuntimeException ex){
+            System.out.println("Mouse Pixel Click Error!");
         }
     }
 
@@ -205,7 +204,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             playerOneInput.setEditable(false);
             playerOneName = playerOneInput.getText();
             if (PlayerInput.playerOneName.isEmpty()) {
-                PlayerInput.playerOneName = "Player 1";
+                PlayerInput.playerOneName = "Player One";
             }
         }
         else if(e.getSource() == playerTwoInput){
@@ -213,7 +212,7 @@ public class PlayerInput extends JPanel implements MouseListener, ActionListener
             playerTwoInput.setEditable(false);
             playerTwoName = playerTwoInput.getText();
             if (PlayerInput.playerTwoName.isEmpty()) {
-                PlayerInput.playerTwoName = "Player 2";
+                PlayerInput.playerTwoName = "Player Two";
             }
         }
     }
